@@ -1,3 +1,4 @@
+package me.karakelley.tictactoe;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

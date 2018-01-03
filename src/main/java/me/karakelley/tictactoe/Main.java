@@ -1,4 +1,4 @@
-package me.karakelley.tictactoe
+package me.karakelley.tictactoe;
 
 public class Main {
 
