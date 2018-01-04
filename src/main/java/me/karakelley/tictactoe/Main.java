@@ -3,6 +3,7 @@ package me.karakelley.tictactoe;
 public class Main {
 
     public static void main(String args[]) {
-        System.out.println("Hello!");
+            UI userInterface = new UI();
+            userInterface.welcomeMessage();
     }
 }
