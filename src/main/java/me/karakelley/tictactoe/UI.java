@@ -2,7 +2,11 @@ package me.karakelley.tictactoe;
 
 public class UI {
 
-    public void welcomeMessage() {
-        System.out.println("Welcome to Tic Tac Toe!");
+    public void display(String message) {
+        System.out.println(message);
+    }
+
+    public static String message(String sentence) {
+        return sentence;
     }
 }
