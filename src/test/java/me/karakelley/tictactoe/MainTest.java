@@ -1,14 +1,12 @@
 package me.karakelley.tictactoe;
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+
+import org.junit.jupiter.api.Test;
 
 public class MainTest {
-
 
     @Test
     public void settingUp() {
         Main test  = new Main();
-        // just a test test
     }
 }
