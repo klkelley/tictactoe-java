@@ -1,12 +1,17 @@
 package me.karakelley.tictactoe;
 
+import java.io.PrintStream;
+
 public class UI {
+    public PrintStream output;
 
-    public void display(String message) {
-        System.out.println(message);
+    public UI(PrintStream out) {
+        output = out;
     }
 
-    public static String message(String sentence) {
-        return sentence;
+    public void welcomeMessage() {
+       output.println("Welcome to Tic Tac Toe!");
     }
+
 }
+
