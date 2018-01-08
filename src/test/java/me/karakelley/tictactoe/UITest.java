@@ -51,14 +51,10 @@ public class UITest {
 
   @Test
   public void testPromptEnterKey() {
-    String keyboardInput = "";
-    try {
-      System.setIn(new ByteArrayInputStream(keyboardInput.getBytes()));
-    }
-    finally {
-      System.setIn(stdin);
-    }
+   ByteArrayInputStream in = new ByteArrayInputStream("\r".getBytes());
+   System.setIn(in);
+   UI testUserInterface = new UI(stdout, in);
 
-    assertEquals("", outContent.toString());
+   assertEquals("", testUserInterface.promptEnterKey());
   }
 }
