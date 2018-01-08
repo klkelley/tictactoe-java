@@ -1,5 +1,6 @@
 package me.karakelley.tictactoe;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -8,14 +9,40 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UITest {
+  private ByteArrayOutputStream outContent;
+  private PrintStream stdout;
+  private UI userInterface;
+
+  @BeforeEach
+  public void setUp() {
+    outContent = new ByteArrayOutputStream();
+    stdout = new PrintStream(outContent);
+    userInterface = new UI(stdout);
+  }
+
+
+  @Test
+    public void testWelcomeMessage() {
+      userInterface.welcomeMessage();
+
+      assertEquals("Welcome to Tic Tac Toe!\n", outContent.toString());
+    }
 
     @Test
-    public void welcomeMessage() {
-        final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        PrintStream stdout = new PrintStream(outContent);
-        UI game = new UI(stdout);
-        game.welcomeMessage();
+    public void testDisplayBoard() {
+      userInterface.displayBoard();
+      assertEquals("   |   |   \n" +
+              " 0 | 1 | 2 \n" +
+              "   |   |   \n" +
+              "___________\n" +
+              "   |   |   \n" +
+              " 3 | 4 | 5 \n" +
+              "   |   |   \n" +
+              "___________\n" +
+              "   |   |   \n" +
+              " 6 | 7 | 8 \n" +
+              "   |   |   \n" +
+              "\n ", outContent.toString());
+  }
 
-        assertEquals("Welcome to Tic Tac Toe!\n", outContent.toString());
-    }
 }
