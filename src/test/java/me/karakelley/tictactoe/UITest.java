@@ -36,17 +36,17 @@ public class UITest {
     public void testDisplayBoard() {
       userInterface.displayBoard();
       assertEquals("   |   |   \n" +
-              " 0 | 1 | 2 \n" +
-              "   |   |   \n" +
-              "___________\n" +
-              "   |   |   \n" +
-              " 3 | 4 | 5 \n" +
-              "   |   |   \n" +
-              "___________\n" +
-              "   |   |   \n" +
-              " 6 | 7 | 8 \n" +
-              "   |   |   \n" +
-              "\n ", outContent.toString());
+                            " 0 | 1 | 2 \n" +
+                            "   |   |   \n" +
+                            "___________\n" +
+                            "   |   |   \n" +
+                            " 3 | 4 | 5 \n" +
+                            "   |   |   \n" +
+                            "___________\n" +
+                            "   |   |   \n" +
+                            " 6 | 7 | 8 \n" +
+                            "   |   |   \n" +
+                            "\n ", outContent.toString());
   }
 
   @Test
