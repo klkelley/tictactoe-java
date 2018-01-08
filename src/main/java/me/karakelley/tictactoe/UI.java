@@ -24,10 +24,9 @@ public class UI {
     out.printf(board.setupBoard());
   }
 
-  public void promptEnterKey() {
+  public String promptEnterKey() {
     out.println("Please press \"ENTER\" to continue");
-
-    inputScanner.nextLine();
+    return inputScanner.nextLine();
   }
 }
 
