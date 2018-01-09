@@ -15,6 +15,6 @@ class GameRunnerTest {
   public void testStart() {
     GameRunner gameRunner = new GameRunner(userInterfaceMock);
     gameRunner.start();
-    verify(userInterfaceMock, times(1)).displayBoard();
+    verify(userInterfaceMock, times(1)).greetUser();
   }
 }
