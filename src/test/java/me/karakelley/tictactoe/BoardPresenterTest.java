@@ -5,17 +5,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BoardInterfaceTest {
-  private BoardInterface boardInterface;
+class BoardPresenterTest {
+  private BoardPresenter boardPresenter;
 
   @BeforeEach
   public void setUp() {
-    boardInterface = new BoardInterface();
+    boardPresenter = new BoardPresenter();
   }
 
   @Test
   public void testSetupBoard() {
-    assertEquals(boardBuilder(), boardInterface.setupBoard());
+    assertEquals(boardBuilder(), boardPresenter.setupBoard());
   }
 
   private String boardBuilder() {
