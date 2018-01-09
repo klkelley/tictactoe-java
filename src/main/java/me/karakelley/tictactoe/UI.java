@@ -7,26 +7,22 @@ import java.util.Scanner;
 public class UI {
   private PrintStream out;
   private Scanner inputScanner;
-  private BoardInterface board;
+//  private BoardInterface board;
 
   public UI(PrintStream out, InputStream in) {
     this.out = out;
     inputScanner = new Scanner(in);
-    board = new BoardInterface();
+//    board = new BoardInterface();
   }
 
-  public void welcomeMessage() {
-    out.println("Welcome to Tic Tac Toe!");
+  public void display(String message) {
+    out.printf(message);
   }
 
-
-  public void displayBoard() {
-    out.printf(board.setupBoard());
-  }
-
-  public String promptEnterKey() {
-    out.println("Please press \"ENTER\" to continue");
-    return inputScanner.nextLine();
+  public String getInput(String message) {
+    display(message);
+    String input = inputScanner.nextLine();
+    return input;
   }
 }
 
