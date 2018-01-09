@@ -12,9 +12,7 @@ public class UserInterface {
   public void greetUser() {
     io.display("Welcome to Tic Tac Toe!\n");
     io.getInput("Please press \"ENTER\" to continue");
-  }
-
-  public void displayBoard() {
     io.display(board.setupBoard());
   }
+
 }
