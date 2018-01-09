@@ -2,7 +2,7 @@ package me.karakelley.tictactoe;
 
 import java.util.ArrayList;
 
-public class BoardInterface {
+public class BoardPresenter {
 
   private String board = "   |   |   \n" +
                          " %s | %s | %s \n" +

@@ -4,9 +4,10 @@ public class Main {
 
 
   public static void main(String args[]) {
-    UI userInterface = new UI(System.out, System.in);
-    BoardInterface boardInterface = new BoardInterface();
-    GameRunner gameRunner = new GameRunner(userInterface, boardInterface);
+    IO io = new IO(System.out, System.in);
+    BoardPresenter boardPresenter = new BoardPresenter();
+    UserInterface userInterface = new UserInterface(io, boardPresenter);
+    GameRunner gameRunner = new GameRunner(userInterface);
 
     gameRunner.start();
   }
