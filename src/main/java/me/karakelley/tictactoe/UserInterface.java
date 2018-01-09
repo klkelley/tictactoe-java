@@ -14,5 +14,4 @@ public class UserInterface {
     io.getInput("Please press \"ENTER\" to continue");
     io.display(board.setupBoard());
   }
-
 }
