@@ -18,7 +18,6 @@ class BoardInterfaceTest {
     assertEquals(boardBuilder(), boardInterface.setupBoard());
   }
 
-
   private String boardBuilder() {
     StringBuilder board = new StringBuilder();
     String[] spaces = new String[]{"0","1","2","3","4","5","6","7","8"};
