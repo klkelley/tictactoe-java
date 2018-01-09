@@ -2,16 +2,16 @@ package me.karakelley.tictactoe;
 
 public class UserInterface {
   private IO io;
-  private BoardPresenter board;
+  private BoardPresenter boardPresenter;
 
-  public UserInterface(IO io, BoardPresenter board) {
+  public UserInterface(IO io, BoardPresenter boardPresenter) {
     this.io = io;
-    this.board = board;
+    this.boardPresenter = boardPresenter;
   }
 
   public void greetUser() {
     io.display("Welcome to Tic Tac Toe!\n");
     io.getInput("Please press \"ENTER\" to continue");
-    io.display(board.setupBoard());
+    io.display(boardPresenter.setupBoard());
   }
 }
