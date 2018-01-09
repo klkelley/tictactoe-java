@@ -24,37 +24,20 @@ public class UITest {
     userInterface = new UI(stdout, stdin);
   }
 
-
   @Test
-    public void testWelcomeMessage() {
-      userInterface.welcomeMessage();
+  public void testDisplay() {
+    String message = "Welcome to Tic Tac Toe!\n";
+    userInterface.display(message);
 
-      assertEquals("Welcome to Tic Tac Toe!\n", outContent.toString());
-    }
-
-    @Test
-    public void testDisplayBoard() {
-      userInterface.displayBoard();
-      assertEquals("   |   |   \n" +
-                            " 0 | 1 | 2 \n" +
-                            "   |   |   \n" +
-                            "___________\n" +
-                            "   |   |   \n" +
-                            " 3 | 4 | 5 \n" +
-                            "   |   |   \n" +
-                            "___________\n" +
-                            "   |   |   \n" +
-                            " 6 | 7 | 8 \n" +
-                            "   |   |   \n" +
-                            "\n ", outContent.toString());
+    assertEquals("Welcome to Tic Tac Toe!\n", outContent.toString());
   }
 
   @Test
-  public void testPromptEnterKey() {
-   ByteArrayInputStream in = new ByteArrayInputStream("\r".getBytes());
-   System.setIn(in);
-   UI testUserInterface = new UI(stdout, in);
+  public void testGetInput() {
+    ByteArrayInputStream in = new ByteArrayInputStream("\r".getBytes());
+    System.setIn(in);
 
-   assertEquals("", testUserInterface.promptEnterKey());
+    UI getUserInterface = new UI(stdout, in);
+    assertEquals("", getUserInterface.getInput("Please press \"ENTER\" to continue\n"));
   }
 }
