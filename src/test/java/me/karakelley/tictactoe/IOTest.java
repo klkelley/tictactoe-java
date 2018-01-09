@@ -30,6 +30,6 @@ public class IOTest {
     System.setIn(in);
 
     IO getIO = new IO(stdout, in);
-    assertEquals("", getIO.getInput("Please press \"ENTER\" to continue\n"));
+    assertEquals("", getIO.getInput());
   }
 }
