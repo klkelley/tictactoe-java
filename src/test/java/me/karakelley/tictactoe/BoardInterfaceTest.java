@@ -15,17 +15,26 @@ class BoardInterfaceTest {
 
   @Test
   public void testSetupBoard() {
-    assertEquals("   |   |   \n" +
-                           " 0 | 1 | 2 \n" +
-                           "   |   |   \n" +
-                           "___________\n" +
-                           "   |   |   \n" +
-                           " 3 | 4 | 5 \n" +
-                           "   |   |   \n" +
-                           "___________\n" +
-                           "   |   |   \n" +
-                           " 6 | 7 | 8 \n" +
-                           "   |   |   \n" +
-                           "\n ", boardInterface.setupBoard());
+    assertEquals(boardBuilder(), boardInterface.setupBoard());
+  }
+
+
+  private String boardBuilder() {
+    StringBuilder board = new StringBuilder();
+    String[] spaces = new String[]{"0","1","2","3","4","5","6","7","8"};
+    String blankSpace = "   |   |   \n";
+    String rowDivider = "___________\n";
+
+    for (int i = 0; i < 3; i++){
+      board.append(blankSpace);
+      board.append(" %s | %s | %s \n");
+      board.append(blankSpace);
+      if (i < 2) {
+        board.append(rowDivider);
+      }
+    }
+    board.append("\n ");
+
+    return String.format(board.toString(), spaces);
   }
 }
