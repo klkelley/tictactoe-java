@@ -4,15 +4,13 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class UI {
+public class UserInterface {
   private PrintStream out;
   private Scanner inputScanner;
-//  private BoardInterface board;
 
-  public UI(PrintStream out, InputStream in) {
+  public UserInterface(PrintStream out, InputStream in) {
     this.out = out;
     inputScanner = new Scanner(in);
-//    board = new BoardInterface();
   }
 
   public void display(String message) {

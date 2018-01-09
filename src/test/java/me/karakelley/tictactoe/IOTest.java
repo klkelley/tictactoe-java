@@ -10,18 +10,18 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UITest {
+public class UserInterfaceTest {
   private ByteArrayOutputStream outContent;
   private PrintStream stdout;
   private InputStream stdin;
-  private UI userInterface;
+  private UserInterface userInterface;
 
   @BeforeEach
   public void setUp() {
     outContent = new ByteArrayOutputStream();
     stdout = new PrintStream(outContent);
     stdin = System.in;
-    userInterface = new UI(stdout, stdin);
+    userInterface = new UserInterface(stdout, stdin);
   }
 
   @Test
@@ -37,7 +37,7 @@ public class UITest {
     ByteArrayInputStream in = new ByteArrayInputStream("\r".getBytes());
     System.setIn(in);
 
-    UI getUserInterface = new UI(stdout, in);
+    UserInterface getUserInterface = new UserInterface(stdout, in);
     assertEquals("", getUserInterface.getInput("Please press \"ENTER\" to continue\n"));
   }
 }
