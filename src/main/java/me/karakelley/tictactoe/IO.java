@@ -4,11 +4,11 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class UserInterface {
+public class IO {
   private PrintStream out;
   private Scanner inputScanner;
 
-  public UserInterface(PrintStream out, InputStream in) {
+  public IO(PrintStream out, InputStream in) {
     this.out = out;
     inputScanner = new Scanner(in);
   }

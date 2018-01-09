@@ -10,26 +10,18 @@ import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UserInterfaceTest {
+public class IOTest {
   private ByteArrayOutputStream outContent;
   private PrintStream stdout;
   private InputStream stdin;
-  private UserInterface userInterface;
+  private IO IO;
 
   @BeforeEach
   public void setUp() {
     outContent = new ByteArrayOutputStream();
     stdout = new PrintStream(outContent);
     stdin = System.in;
-    userInterface = new UserInterface(stdout, stdin);
-  }
-
-  @Test
-  public void testDisplay() {
-    String message = "Welcome to Tic Tac Toe!\n";
-    userInterface.display(message);
-
-    assertEquals("Welcome to Tic Tac Toe!\n", outContent.toString());
+    IO = new IO(stdout, stdin);
   }
 
   @Test
@@ -37,7 +29,7 @@ public class UserInterfaceTest {
     ByteArrayInputStream in = new ByteArrayInputStream("\r".getBytes());
     System.setIn(in);
 
-    UserInterface getUserInterface = new UserInterface(stdout, in);
-    assertEquals("", getUserInterface.getInput("Please press \"ENTER\" to continue\n"));
+    IO getIO = new IO(stdout, in);
+    assertEquals("", getIO.getInput("Please press \"ENTER\" to continue\n"));
   }
 }
