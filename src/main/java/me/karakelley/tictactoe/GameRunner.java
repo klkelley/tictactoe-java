@@ -10,7 +10,7 @@ public class GameRunner {
 
   public void start() {
     userInterface.greetUser();
-    userInterface.displayBoard();
+
     // after greet user, start actual game play
   }
 }
