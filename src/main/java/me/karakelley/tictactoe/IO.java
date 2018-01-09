@@ -17,8 +17,7 @@ public class IO {
     out.printf(message);
   }
 
-  public String getInput(String message) {
-    display(message);
+  public String getInput() {
     String input = inputScanner.nextLine();
     return input;
   }
