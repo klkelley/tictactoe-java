@@ -11,7 +11,8 @@ public class UserInterface {
 
   public void greetUser() {
     io.display("Welcome to Tic Tac Toe!\n");
-    io.getInput("Please press \"ENTER\" to continue");
+    io.display("Please press \"ENTER\" to continue");
+    io.getInput();
     io.display(boardPresenter.setupBoard());
   }
 }
