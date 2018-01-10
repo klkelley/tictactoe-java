@@ -9,8 +9,8 @@ public class Main {
     BoardState boardState = new BoardState(new String[]{"-", "-", "-", "-", "-", "-", "-", "-", "-"});
     BoardPresenter boardPresenter = new BoardPresenter(boardState);
     UserInterface userInterface = new UserInterface(io, boardPresenter);
-    GameRunner gameRunner = new GameRunner(userInterface);
+    Game game = new Game(userInterface, humanPlayer, boardState);
 
-    gameRunner.start();
+    game.start();
   }
 }
