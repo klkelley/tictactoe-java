@@ -9,7 +9,6 @@ import static org.mockito.Mockito.mock;
 class BoardPresenterTest {
   private BoardPresenter boardPresenter;
 
-  BoardState boardStateMock = mock(BoardState.class);
   BoardState boardState = new BoardState(new String[]{"-", "-", "-", "-", "-", "-", "-", "-", "-"});
 
   @BeforeEach
