@@ -10,8 +10,8 @@ class BoardStateTest {
 
   @Test
   public void testPlaceMove() {
-    BoardState boardState = new BoardState(new String[]{"-", "-", "-", "-", "-", "-", "-", "-", "-", "-"});
-    String[] expectedOutput = new String[] {"X","-", "-", "-", "-", "-", "-", "-", "-", "-"};
+    BoardState boardState = new BoardState(new String[]{"-", "-", "-", "-", "-", "-", "-", "-", "-"});
+    String[] expectedOutput = new String[] {"X","-", "-", "-", "-", "-", "-", "-", "-"};
     assertArrayEquals(expectedOutput, boardState.placeMove(0));
   }
 }
