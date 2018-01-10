@@ -11,7 +11,7 @@ public class BoardState {
   }
 
   public String[] getGrid() {
-    return grid;
+    return this.grid;
   }
 
   public String[] placeMove(int space) {
