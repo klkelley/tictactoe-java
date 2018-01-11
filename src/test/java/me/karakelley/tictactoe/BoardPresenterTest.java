@@ -24,7 +24,7 @@ class BoardPresenterTest {
 
   @Test
   public void testBoardHasOneMarker() {
-    boardState.placeMove(1);
+    boardState.placeMove(1, "X");
     String[] testGrid = new String[]{"-","X","-","-","-","-","-","-","-"};
     assertEquals(testBoardBuilder(testGrid), boardPresenter.setupBoard());
 
