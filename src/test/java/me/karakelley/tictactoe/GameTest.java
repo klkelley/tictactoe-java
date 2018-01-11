@@ -17,7 +17,6 @@ class GameTest {
     game = new Game(userInterfaceMock, humanPlayerMock, boardStateMock);
   }
 
-
   @Test
   public void testStart() {
     when(userInterfaceMock.userPrompt()).thenReturn("1");
