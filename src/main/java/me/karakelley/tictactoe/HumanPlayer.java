@@ -1,14 +1,14 @@
 package me.karakelley.tictactoe;
 
 public class HumanPlayer {
-  private IO io;
+  private String marker;
 
-  public HumanPlayer(IO io) {
-    this.io = io;
+  public String getMarker() {
+    return marker;
   }
 
-  public String nextMove() {
-    io.display("Please pick an available cell\n");
-    return io.getInput();
+  public HumanPlayer(String marker) {
+    this.marker = marker;
   }
+
 }
