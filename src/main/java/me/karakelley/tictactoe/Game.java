@@ -20,8 +20,8 @@ public class Game {
 
 
   private void play() {
-    int chosenCell = Integer.valueOf(humanPlayer.nextMove());
-    boardState.placeMove(chosenCell);
+    String chosenCell = userInterface.userPrompt();
+    boardState.placeMove(Integer.parseInt(chosenCell), humanPlayer.getMarker());
     userInterface.displayBoard();
   }
 }
