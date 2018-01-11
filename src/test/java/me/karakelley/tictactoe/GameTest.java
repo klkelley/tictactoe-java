@@ -20,9 +20,8 @@ class GameTest {
 
   @Test
   public void testStart() {
-    when(humanPlayerMock.nextMove()).thenReturn("1");
+    when(userInterfaceMock.userPrompt()).thenReturn("1");
     game.start();
     verify(userInterfaceMock, times(1)).greetUser();
   }
-
 }
