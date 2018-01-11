@@ -9,10 +9,11 @@ class UserInterfaceTest {
 
   IO ioMock = mock(IO.class);
   BoardPresenter boardPresenterMock = mock(BoardPresenter.class);
+  Validator validatorMock = mock(Validator.class);
 
   @Test
   public void testGreetUser() {
-    UserInterface userInterface = new UserInterface(ioMock, boardPresenterMock);
+    UserInterface userInterface = new UserInterface(ioMock, boardPresenterMock, validatorMock);
     doNothing().when(ioMock).display("test");
     userInterface.greetUser();
     verify(ioMock, times(1)).display("Welcome to Tic Tac Toe!\n");
@@ -20,7 +21,7 @@ class UserInterfaceTest {
 
   @Test
   public void testDisplayBoard() {
-    UserInterface userInterface = new UserInterface(ioMock, boardPresenterMock);
+    UserInterface userInterface = new UserInterface(ioMock, boardPresenterMock, validatorMock);
     doNothing().when(ioMock).display("test");
     userInterface.displayBoard();
     verify(ioMock, times(1)).display(null);
