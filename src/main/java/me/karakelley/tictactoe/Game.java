@@ -18,7 +18,6 @@ public class Game {
     play();
   }
 
-
   private void play() {
     String chosenCell = userInterface.userPrompt();
     boardState.placeMove(Integer.parseInt(chosenCell), humanPlayer.getMarker());
