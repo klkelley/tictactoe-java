@@ -14,8 +14,8 @@ public class BoardState {
     return this.grid;
   }
 
-  public String[] placeMove(int space, String marker) {
-    grid[space] = marker;
+  public String[] placeMove(String space, String marker) {
+    grid[Integer.parseInt(space)] = marker;
     return grid;
   }
 
