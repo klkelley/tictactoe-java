@@ -14,15 +14,15 @@ public class Game {
 
   public void start() {
     userInterface.greetUser();
-    userInterface.continueOn();
+    userInterface.userPrompt("Please press \"ENTER\" to continue", new EnterValidator());
     userInterface.displayBoard(boardState.getGrid());
 
     play();
   }
 
   private void play() {
-    String chosenCell = userInterface.userPrompt();
-    boardState.placeMove(Integer.parseInt(chosenCell), humanPlayer.getMarker());
+    String chosenCell = userInterface.userPrompt("Please enter an available cell:\n", new NumberValidator());
+    boardState.placeMove(chosenCell, humanPlayer.getMarker());
     userInterface.displayBoard(boardState.getGrid());
   }
 }
