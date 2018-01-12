@@ -22,4 +22,14 @@ public class BoardState {
   private String[] initialState() {
     return new String[]{"-", "-", "-", "-", "-", "-", "-", "-", "-"};
   }
+
+  public boolean fullBoard() {
+    boolean full = true;
+    for (int i = 0; i < grid.length; i++) {
+      if (grid[i] == "-") {
+        full = false;
+      }
+    }
+    return full;
+  }
 }
