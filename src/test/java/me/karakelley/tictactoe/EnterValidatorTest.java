@@ -10,7 +10,7 @@ class EnterValidatorTest {
   public void testInValidInput() {
     Validator enterValidator = new EnterValidator();
 
-    assertEquals(true, enterValidator.isValidInput("\r"));
+    assertEquals(true, enterValidator.isValidInput(""));
   }
 
 }

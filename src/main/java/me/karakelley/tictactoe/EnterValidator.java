@@ -1,5 +1,7 @@
 package me.karakelley.tictactoe;
 
+import java.io.ByteArrayInputStream;
+
 public class EnterValidator implements Validator {
 
   @Override
@@ -12,6 +14,6 @@ public class EnterValidator implements Validator {
   }
 
   private boolean hitEnter(String input) {
-    return input == "\r";
+    return input.isEmpty();
   }
 }
