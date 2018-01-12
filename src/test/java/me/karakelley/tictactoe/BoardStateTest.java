@@ -12,6 +12,6 @@ class BoardStateTest {
   public void testPlaceMove() {
     BoardState boardState = new BoardState();
     String[] expectedOutput = new String[] {"X","-", "-", "-", "-", "-", "-", "-", "-"};
-    assertArrayEquals(expectedOutput, boardState.placeMove(0, "X"));
+    assertArrayEquals(expectedOutput, boardState.placeMove("0", "X"));
   }
 }
