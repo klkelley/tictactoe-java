@@ -17,7 +17,7 @@ class GameTest {
 
   @BeforeEach
   public void setUp() {
-    game = new Game(userInterfaceMock, humanPlayerMock, boardStateMock, validatorMock);
+    game = new Game(userInterfaceMock, humanPlayerMock, humanPlayerMock, boardStateMock, validatorMock);
   }
 
   @Test
