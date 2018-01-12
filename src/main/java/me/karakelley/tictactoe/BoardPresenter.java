@@ -4,31 +4,37 @@ import java.util.ArrayList;
 
 public class BoardPresenter {
 
-  private String board = "   |   |   \n" +
-                         " %s | %s | %s \n" +
-                         "   |   |   \n" +
-                         "___________\n" +
-                         "   |   |   \n" +
-                         " %s | %s | %s \n" +
-                         "   |   |   \n" +
-                         "___________\n" +
-                         "   |   |   \n" +
-                         " %s | %s | %s \n" +
-                         "   |   |   \n" +
-                         "\n ";
-
-  public String setupBoard() {
-    return String.format(board, makeSpaces().toArray());
+  public String prettify(String[] board) {
+    return boardBuilder(board);
   }
 
-  private ArrayList<String> makeSpaces() {
-    ArrayList<String> spaces = new ArrayList<>();
+  private String boardBuilder(String[] grid) {
+    StringBuilder board = new StringBuilder();
+    String blankSpace = "   |   |   \n";
+    String rowDivider = "___________\n";
 
-    for (int i = 0; i < 10; i++) {
-      spaces.add(Integer.toString(i));
+    for (int i = 0; i < 3; i++){
+      board.append(blankSpace);
+      board.append(" %s | %s | %s \n");
+      board.append(blankSpace);
+      if (i < 2) {
+        board.append(rowDivider);
+      }
     }
+    board.append("\n ");
 
-    return spaces;
+    return String.format(board.toString(), updatedBoardGrid(grid));
   }
 
+  private String[] updatedBoardGrid(String[] grid) {
+    String[] newGrid = new String[9];
+    for (int n = 0; n < grid.length; n++) {
+      if (grid[n] == "-") {
+        newGrid[n] = Integer.toString(n);
+      } else {
+        newGrid[n] = grid[n];
+      }
+    }
+    return newGrid;
+  }
 }

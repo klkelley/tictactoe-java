@@ -5,10 +5,13 @@ public class Main {
 
   public static void main(String args[]) {
     IO io = new IO(System.out, System.in);
+    HumanPlayer humanPlayer = new HumanPlayer("X");
+    ValidatorFactory validator = new ValidatorFactoryImplementation();
+    BoardState boardState = new BoardState();
     BoardPresenter boardPresenter = new BoardPresenter();
     UserInterface userInterface = new UserInterface(io, boardPresenter);
-    GameRunner gameRunner = new GameRunner(userInterface);
+    Game game = new Game(userInterface, humanPlayer, boardState, validator);
 
-    gameRunner.start();
+    game.start();
   }
 }

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 class BoardPresenterTest {
   private BoardPresenter boardPresenter;
@@ -15,25 +16,36 @@ class BoardPresenterTest {
 
   @Test
   public void testSetupBoard() {
-    assertEquals(boardBuilder(), boardPresenter.setupBoard());
+    String[] blankGrid = new String[]{"-","-","-","-","-","-","-","-","-"};
+    assertEquals("   |   |   \n" +
+                          " 0 | 1 | 2 \n" +
+                          "   |   |   \n" +
+                          "___________\n" +
+                          "   |   |   \n" +
+                          " 3 | 4 | 5 \n" +
+                          "   |   |   \n" +
+                          "___________\n" +
+                          "   |   |   \n" +
+                          " 6 | 7 | 8 \n" +
+                          "   |   |   \n" +
+                          "\n ", boardPresenter.prettify(blankGrid));
   }
 
-  private String boardBuilder() {
-    StringBuilder board = new StringBuilder();
-    String[] spaces = new String[]{"0","1","2","3","4","5","6","7","8"};
-    String blankSpace = "   |   |   \n";
-    String rowDivider = "___________\n";
+  @Test
+  public void testBoardHasOneMarker() {
+    String[] testGrid = new String[]{"-","X","-","-","-","-","-","-","-"};
+    assertEquals("   |   |   \n" +
+                          " 0 | X | 2 \n" +
+                          "   |   |   \n" +
+                          "___________\n" +
+                          "   |   |   \n" +
+                          " 3 | 4 | 5 \n" +
+                          "   |   |   \n" +
+                          "___________\n" +
+                          "   |   |   \n" +
+                          " 6 | 7 | 8 \n" +
+                          "   |   |   \n" +
+                          "\n ", boardPresenter.prettify(testGrid));
 
-    for (int i = 0; i < 3; i++){
-      board.append(blankSpace);
-      board.append(" %s | %s | %s \n");
-      board.append(blankSpace);
-      if (i < 2) {
-        board.append(rowDivider);
-      }
-    }
-    board.append("\n ");
-
-    return String.format(board.toString(), spaces);
   }
 }

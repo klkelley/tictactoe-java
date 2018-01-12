@@ -11,16 +11,20 @@ public class UserInterface {
 
   public void greetUser() {
     io.display("Welcome to Tic Tac Toe!\n");
-    continueOn();
-    displayBoard();
   }
 
-  public void displayBoard() {
-    io.display(boardPresenter.setupBoard());
+  public String userPrompt(String message, Validator validator) {
+    String input;
+
+    do {
+      io.display(message);
+      input = io.getInput();
+
+    } while(!validator.isValidInput(input));
+      return input;
   }
 
-  private void continueOn() {
-    io.display("Please press \"ENTER\" to continue");
-    io.getInput();
+  public void displayBoard(String[] board) {
+    io.display(boardPresenter.prettify(board));
   }
 }
