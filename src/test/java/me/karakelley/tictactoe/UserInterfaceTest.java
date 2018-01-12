@@ -11,11 +11,11 @@ class UserInterfaceTest {
 
   IO ioMock = mock(IO.class);
   BoardPresenter boardPresenterMock = mock(BoardPresenter.class);
-  Validator validatorMock = mock(Validator.class);
+  NumberValidator numberValidatorMock = mock(NumberValidator.class);
 
   @BeforeEach
   public void setUp() {
-    userInterface = new UserInterface(ioMock, boardPresenterMock, validatorMock);
+    userInterface = new UserInterface(ioMock, boardPresenterMock);
   }
 
   @Test
@@ -35,8 +35,8 @@ class UserInterfaceTest {
   @Test
   public void testUserPrompt() {
     when(ioMock.getInput()).thenReturn("1");
-    when(validatorMock.isValidInput("1")).thenReturn(true);
+    when(numberValidatorMock.isValidInput("1")).thenReturn(true);
     doNothing().when(ioMock).display("test");
-    assertEquals("1", userInterface.userPrompt("test", validatorMock));
+    assertEquals("1", userInterface.userPrompt("test", numberValidatorMock));
   }
 }

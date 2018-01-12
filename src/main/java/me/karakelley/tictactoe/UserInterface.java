@@ -3,12 +3,10 @@ package me.karakelley.tictactoe;
 public class UserInterface {
   private IO io;
   private BoardPresenter boardPresenter;
-  Validator validator;
 
-  public UserInterface(IO io, BoardPresenter boardPresenter, Validator validator) {
+  public UserInterface(IO io, BoardPresenter boardPresenter) {
     this.io = io;
     this.boardPresenter = boardPresenter;
-    this.validator = validator;
   }
 
   public void greetUser() {
