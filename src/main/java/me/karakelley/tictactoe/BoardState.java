@@ -6,8 +6,8 @@ import java.util.List;
 public class BoardState {
   private String[] grid;
 
-  public BoardState(String[] grid) {
-    this.grid = grid;
+  public BoardState() {
+    this.grid = initialState();
   }
 
   public String[] getGrid() {
@@ -17,5 +17,9 @@ public class BoardState {
   public String[] placeMove(int space, String marker) {
     grid[space] = marker;
     return grid;
+  }
+
+  private String[] initialState() {
+    return new String[]{"-", "-", "-", "-", "-", "-", "-", "-", "-"};
   }
 }
