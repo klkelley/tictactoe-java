@@ -28,7 +28,7 @@ class UserInterfaceTest {
   @Test
   public void testDisplayBoard() {
     doNothing().when(ioMock).display("test");
-    userInterface.displayBoard();
+    userInterface.displayBoard(new String[]{"-","-","-","-","-","-","-","-","-"});
     verify(ioMock, times(1)).display(null);
   }
 
@@ -37,6 +37,6 @@ class UserInterfaceTest {
     when(ioMock.getInput()).thenReturn("1");
     when(validatorMock.isValidInput("1")).thenReturn(true);
     doNothing().when(ioMock).display("test");
-    assertEquals("1", userInterface.userPrompt());
+    assertEquals("1", userInterface.userPrompt("test", validatorMock));
   }
 }
