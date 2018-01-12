@@ -3,14 +3,9 @@ package me.karakelley.tictactoe;
 import java.util.ArrayList;
 
 public class BoardPresenter {
-  public BoardState boardState;
 
-  public BoardPresenter(BoardState boardState) {
-    this.boardState = boardState;
-  }
-
-  public String setupBoard() {
-    return boardBuilder(boardState.getGrid());
+  public String prettify(String[] board) {
+    return boardBuilder(board);
   }
 
   private String boardBuilder(String[] grid) {
