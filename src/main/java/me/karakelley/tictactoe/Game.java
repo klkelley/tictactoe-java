@@ -14,6 +14,8 @@ public class Game {
 
   public void start() {
     userInterface.greetUser();
+    userInterface.continueOn();
+    userInterface.displayBoard(boardState.getGrid());
 
     play();
   }
@@ -21,6 +23,6 @@ public class Game {
   private void play() {
     String chosenCell = userInterface.userPrompt();
     boardState.placeMove(Integer.parseInt(chosenCell), humanPlayer.getMarker());
-    userInterface.displayBoard();
+    userInterface.displayBoard(boardState.getGrid());
   }
 }
