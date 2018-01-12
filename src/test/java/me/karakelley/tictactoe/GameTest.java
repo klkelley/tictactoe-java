@@ -11,16 +11,18 @@ class GameTest {
   UserInterface userInterfaceMock = mock(UserInterface.class);
   HumanPlayer humanPlayerMock = mock(HumanPlayer.class);
   BoardState boardStateMock = mock(BoardState.class);
-  Validator validatorMock = mock(NumberValidator.class);
+  ValidatorFactory validatorMock = mock(ValidatorFactory.class);
+  NumberValidator numberValidatorMock = mock(NumberValidator.class);
+  EnterValidator enterValidatorMock = mock(EnterValidator.class);
 
   @BeforeEach
   public void setUp() {
-    game = new Game(userInterfaceMock, humanPlayerMock, boardStateMock);
+    game = new Game(userInterfaceMock, humanPlayerMock, boardStateMock, validatorMock);
   }
 
   @Test
   public void testStart() {
-    when(userInterfaceMock.userPrompt("Please enter an available cell:\n", validatorMock)).thenReturn("1");
+    when(userInterfaceMock.userPrompt("Please enter an available cell:\n", enterValidatorMock)).thenReturn("1");
     when(boardStateMock.placeMove("1", "x")).thenReturn(new String[]{"1"});
     game.start();
     verify(userInterfaceMock, times(1)).greetUser();
