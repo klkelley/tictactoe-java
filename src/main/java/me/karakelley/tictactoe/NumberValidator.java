@@ -12,7 +12,7 @@ class NumberValidator implements Validator {
   }
 
   private boolean validNumber(int number) {
-    return number > 0 && number < 10;
+    return number >= 0 && number < 9;
   }
 
 }
