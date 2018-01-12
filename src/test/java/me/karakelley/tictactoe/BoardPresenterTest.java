@@ -9,54 +9,43 @@ import static org.mockito.Mockito.mock;
 class BoardPresenterTest {
   private BoardPresenter boardPresenter;
 
-  BoardState boardState = new BoardState(new String[]{"-", "-", "-", "-", "-", "-", "-", "-", "-"});
-
   @BeforeEach
   public void setUp() {
-    boardPresenter = new BoardPresenter(boardState);
+    boardPresenter = new BoardPresenter();
   }
 
   @Test
   public void testSetupBoard() {
     String[] blankGrid = new String[]{"-","-","-","-","-","-","-","-","-"};
-    assertEquals(testBoardBuilder(blankGrid), boardPresenter.setupBoard());
+    assertEquals("   |   |   \n" +
+                          " 0 | 1 | 2 \n" +
+                          "   |   |   \n" +
+                          "___________\n" +
+                          "   |   |   \n" +
+                          " 3 | 4 | 5 \n" +
+                          "   |   |   \n" +
+                          "___________\n" +
+                          "   |   |   \n" +
+                          " 6 | 7 | 8 \n" +
+                          "   |   |   \n" +
+                          "\n ", boardPresenter.prettify(blankGrid));
   }
 
   @Test
   public void testBoardHasOneMarker() {
-    boardState.placeMove(1, "X");
     String[] testGrid = new String[]{"-","X","-","-","-","-","-","-","-"};
-    assertEquals(testBoardBuilder(testGrid), boardPresenter.setupBoard());
+    assertEquals("   |   |   \n" +
+                          " 0 | X | 2 \n" +
+                          "   |   |   \n" +
+                          "___________\n" +
+                          "   |   |   \n" +
+                          " 3 | 4 | 5 \n" +
+                          "   |   |   \n" +
+                          "___________\n" +
+                          "   |   |   \n" +
+                          " 6 | 7 | 8 \n" +
+                          "   |   |   \n" +
+                          "\n ", boardPresenter.prettify(testGrid));
 
-  }
-
-  private String testBoardBuilder(String[] grid) {
-    StringBuilder board = new StringBuilder();
-    String blankSpace = "   |   |   \n";
-    String rowDivider = "___________\n";
-
-    for (int i = 0; i < 3; i++){
-      board.append(blankSpace);
-      board.append(" %s | %s | %s \n");
-      board.append(blankSpace);
-      if (i < 2) {
-        board.append(rowDivider);
-      }
-    }
-    board.append("\n ");
-
-    return String.format(board.toString(), boardGridBuilder(grid));
-  }
-
-  private String[] boardGridBuilder(String[] grid) {
-    String[] newGrid = new String[9];
-    for (int n = 0; n < grid.length; n++) {
-      if (grid[n] == "-") {
-        newGrid[n] = Integer.toString(n);
-      } else {
-        newGrid[n] = grid[n];
-      }
-    }
-    return newGrid;
   }
 }
