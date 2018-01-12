@@ -14,7 +14,7 @@ public class Game {
 
   public void start() {
     userInterface.greetUser();
-    userInterface.userPrompt("Please press \"ENTER\" to continue", new EnterValidator());
+    userInterface.userPrompt("Please press \"ENTER\" to continue\n", new EnterValidator());
     userInterface.displayBoard(boardState.getGrid());
 
     play();
