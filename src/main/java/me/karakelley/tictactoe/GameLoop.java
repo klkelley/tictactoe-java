@@ -9,32 +9,35 @@ public class Game {
   private HumanPlayer humanPlayer1;
   private HumanPlayer humanPlayer2;
   private BoardState boardState;
-  private ValidatorFactory validator;
   private HumanPlayer[] players;
+  private GameState gameState;
 
-  public Game(UserInterface userInterface, HumanPlayer player1, HumanPlayer player2, BoardState boardState, ValidatorFactory validator) {
+  public Game(UserInterface userInterface, HumanPlayer player1, HumanPlayer player2, BoardState boardState, GameState gameState) {
     this.userInterface = userInterface;
     this.humanPlayer1 = player1;
     this.humanPlayer2 = player2;
     this.boardState = boardState;
-    this.validator = validator;
     this.players = setUpPlayerOrder();
+    this.gameState = gameState;
   }
 
   public void start() {
-    userInterface.greetUser();
-    userInterface.userPrompt("Please press \"ENTER\" to continue\n", validator.make("EnterValidator"));
-    userInterface.displayBoard(boardState.getGrid());
+    userInterface.displayMessage("Welcome to Tic Tac Toe!\n");
+    userInterface.userPrompt("Please press \"ENTER\" to continue\n", new EnterValidator());
+    userInterface.displayBoard(boardState);
 
     play();
   }
 
   private void play() {
-    while (!boardState.fullBoard()) {
+    while (!gameState.gameOver(boardState)) {
       HumanPlayer player = takeTurn();
-      String chosenCell = userInterface.userPrompt("Please enter an available cell:\n", validator.make("NumberValidator"));
+      String chosenCell = userInterface.userPrompt("Please enter an available cell:\n", new NumberValidator(boardState));
       boardState.placeMove(chosenCell, player.getMarker());
-      userInterface.displayBoard(boardState.getGrid());
+      userInterface.displayBoard(boardState);
+    }
+    if (gameState.tie(boardState)) {
+      userInterface.displayMessage("It's a tie!");
     }
   }
 
