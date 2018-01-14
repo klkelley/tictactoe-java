@@ -3,22 +3,22 @@ package me.karakelley.tictactoe;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class Game {
+public class GameLoop {
 
   private UserInterface userInterface;
   private HumanPlayer humanPlayer1;
   private HumanPlayer humanPlayer2;
   private BoardState boardState;
   private HumanPlayer[] players;
-  private GameState gameState;
+  private Game game;
 
-  public Game(UserInterface userInterface, HumanPlayer player1, HumanPlayer player2, BoardState boardState, GameState gameState) {
+  public GameLoop(UserInterface userInterface, HumanPlayer player1, HumanPlayer player2, BoardState boardState, Game game) {
     this.userInterface = userInterface;
     this.humanPlayer1 = player1;
     this.humanPlayer2 = player2;
     this.boardState = boardState;
     this.players = setUpPlayerOrder();
-    this.gameState = gameState;
+    this.game = game;
   }
 
   public void start() {
@@ -30,13 +30,13 @@ public class Game {
   }
 
   private void play() {
-    while (!gameState.gameOver(boardState)) {
+    while (!game.gameOver(boardState)) {
       HumanPlayer player = takeTurn();
       String chosenCell = userInterface.userPrompt("Please enter an available cell:\n", new NumberValidator(boardState));
       boardState.placeMove(chosenCell, player.getMarker());
       userInterface.displayBoard(boardState);
     }
-    if (gameState.tie(boardState)) {
+    if (game.tie(boardState)) {
       userInterface.displayMessage("It's a tie!");
     }
   }
