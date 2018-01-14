@@ -16,6 +16,12 @@ class BoardStateTest {
   }
 
   @Test
+  public void getGrid() {
+    String[] expectedOutput = new String[] {"-","-", "-", "-", "-", "-", "-", "-", "-"};
+    assertArrayEquals(expectedOutput, boardState.getGrid());
+  }
+
+  @Test
   public void testPlaceMove() {
     String[] expectedOutput = new String[] {"X","-", "-", "-", "-", "-", "-", "-", "-"};
     assertArrayEquals(expectedOutput, boardState.placeMove("0", "X"));
