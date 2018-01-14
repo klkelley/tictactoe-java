@@ -42,13 +42,13 @@ class BoardStateTest {
   }
 
   @Test
-  public void cellAvailable() {
-    assertEquals(true, boardState.cellInBounds(0));
+  public void testcellIsAvailable() {
+    assertEquals(true, boardState.cellAvailable(0));
   }
 
-  @Test
-  public void cellHasMarker() {
-    assertEquals(true, boardState.cellAvailable(0));
+  @Test void testCellIsNotAvailable() {
+    boardState.placeMove("0", "X");
+    assertEquals(false, boardState.cellAvailable(0));
   }
 
   @Test
