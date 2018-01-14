@@ -1,5 +1,7 @@
 package me.karakelley.tictactoe;
 
+import java.util.List;
+
 public class UserInterface {
   private IO io;
   private BoardPresenter boardPresenter;
@@ -9,8 +11,9 @@ public class UserInterface {
     this.boardPresenter = boardPresenter;
   }
 
-  public void greetUser() {
-    io.display("Welcome to Tic Tac Toe!\n");
+  public void displayMessage(String message) {
+
+    io.display(message);
   }
 
   public String userPrompt(String message, Validator validator) {
@@ -24,8 +27,7 @@ public class UserInterface {
       return input;
   }
 
-  public void displayBoard(String[] board) {
-    io.display(boardPresenter.prettify(board));
+  public void displayBoard(BoardState board) {
+    io.display(boardPresenter.prettify(board.getGrid()));
   }
 }
-git sdfsddfsdfsdfsdfsdfsdfwerfsdvfffi
