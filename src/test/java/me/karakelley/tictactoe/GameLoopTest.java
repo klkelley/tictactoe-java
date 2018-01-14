@@ -18,7 +18,7 @@ class GameLoopTest {
 
   @BeforeEach
   public void setUp() {
-    gameLoop = new GameLoop(userInterfaceMock, humanPlayerMock, humanPlayerMock, boardStateMock, gameMock);
+    gameLoop = new GameLoop(userInterfaceMock, humanPlayerMock, humanPlayerMock);
   }
 
   @Test
@@ -26,7 +26,7 @@ class GameLoopTest {
     when(userInterfaceMock.userPrompt("Please enter an available cell:\n", enterValidatorMock)).thenReturn("1");
     when(boardStateMock.placeMove("1", "x")).thenReturn(new String[]{"1"});
     when(gameMock.gameOver(boardStateMock)).thenReturn(true);
-    gameLoop.start();
+    gameLoop.start(boardStateMock, gameMock);
     verify(userInterfaceMock, times(1)).displayMessage("Welcome to Tic Tac Toe!\n");
   }
 }

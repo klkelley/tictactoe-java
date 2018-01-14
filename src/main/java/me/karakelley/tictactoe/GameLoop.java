@@ -8,28 +8,24 @@ public class GameLoop {
   private UserInterface userInterface;
   private HumanPlayer humanPlayer1;
   private HumanPlayer humanPlayer2;
-  private BoardState boardState;
   private HumanPlayer[] players;
-  private Game game;
 
-  public GameLoop(UserInterface userInterface, HumanPlayer player1, HumanPlayer player2, BoardState boardState, Game game) {
+  public GameLoop(UserInterface userInterface, HumanPlayer player1, HumanPlayer player2) {
     this.userInterface = userInterface;
     this.humanPlayer1 = player1;
     this.humanPlayer2 = player2;
-    this.boardState = boardState;
     this.players = setUpPlayerOrder();
-    this.game = game;
   }
 
-  public void start() {
+  public void start(BoardState boardState, Game game) {
     userInterface.displayMessage("Welcome to Tic Tac Toe!\n");
     userInterface.userPrompt("Please press \"ENTER\" to continue\n", new EnterValidator());
     userInterface.displayBoard(boardState);
 
-    play();
+    play(boardState, game);
   }
 
-  private void play() {
+  private void play(BoardState boardState, Game game) {
     while (!game.gameOver(boardState)) {
       HumanPlayer player = takeTurn();
       String chosenCell = userInterface.userPrompt("Please enter an available cell:\n", new NumberValidator(boardState));
@@ -37,7 +33,7 @@ public class GameLoop {
       userInterface.displayBoard(boardState);
     }
     if (game.tie(boardState)) {
-      userInterface.displayMessage("It's a tie!");
+      userInterface.displayMessage("It's a tie!\n");
     }
   }
 
