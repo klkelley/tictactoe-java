@@ -20,7 +20,6 @@ class NumberValidatorTest {
   public void testInputIsValid() {
     Validator validator = new NumberValidator(boardState);
     when(boardState.cellAvailable(4)).thenReturn(true);
-    when(boardState.cellInBounds(4)).thenReturn(true);
 
     assertEquals(true, validator.isValidInput("4"));
   }
