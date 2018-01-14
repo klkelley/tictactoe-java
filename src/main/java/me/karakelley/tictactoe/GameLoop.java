@@ -27,14 +27,18 @@ public class GameLoop {
 
   private void play(BoardState boardState, Game game) {
     while (!game.gameOver(boardState)) {
-      HumanPlayer player = takeTurn();
-      String chosenCell = userInterface.userPrompt("Please enter an available cell:\n", new NumberValidator(boardState));
-      boardState.placeMove(chosenCell, player.getMarker());
-      userInterface.displayBoard(boardState);
+      nextPlayersTurn(boardState, game);
     }
     if (game.tie(boardState)) {
       userInterface.displayMessage("It's a tie!\n");
     }
+  }
+
+  private void nextPlayersTurn(BoardState boardState, Game game) {
+    String chosenCell = userInterface.userPrompt("Please enter an available cell:\n", new NumberValidator(boardState));
+    HumanPlayer player = takeTurn();
+    boardState.placeMove(chosenCell, player.getMarker());
+    userInterface.displayBoard(boardState);
   }
 
   private HumanPlayer takeTurn() {
