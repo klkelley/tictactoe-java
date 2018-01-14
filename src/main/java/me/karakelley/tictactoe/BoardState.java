@@ -26,7 +26,7 @@ public class BoardState {
   public boolean fullBoard() {
     boolean full = true;
     for (int i = 0; i < gridLength(); i++) {
-      if (grid[i] == "-") {
+      if (cellBlank(i)) {
         full = false;
       }
     }
@@ -40,7 +40,7 @@ public class BoardState {
   public String[][] combinations() {
     String[][] combinations = new String[rows().length + columns().length+ diagonals().length][boardSize];
     System.arraycopy(rows(), 0, combinations, 0, rows().length);
-    System.arraycopy(columns(), 0, combinations, columns().length, rows().length);
+    System.arraycopy(columns(), 0, combinations, rows().length,  columns().length);
     System.arraycopy(diagonals(), 0, combinations,  columns().length + rows().length, diagonals().length);
 
     return combinations;
@@ -69,11 +69,11 @@ public class BoardState {
 
   private String[][] rows() {
     String[][] rows = new String[boardSize][boardSize];
-    int length = 0;
+    int index = 0;
       for (int i = 0; i < boardSize; i++) {
         for (int n = 0; n < boardSize; n++) {
-          rows[i][n] = grid[length];
-          length++;
+          rows[i][n] = grid[index];
+          index++;
         }
       }
     return rows;
