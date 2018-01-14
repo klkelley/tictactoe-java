@@ -10,7 +10,7 @@ class NumberValidator implements Validator {
   @Override
   public boolean isValidInput(String input) {
     try {
-      return boardState.cellInBounds(Integer.parseInt(input)) && boardState.cellAvailable(Integer.parseInt(input));
+      return boardState.cellAvailable(Integer.parseInt(input));
     } catch(IllegalArgumentException e) {
       return false;
     }
