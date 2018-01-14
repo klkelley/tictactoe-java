@@ -23,14 +23,6 @@ public class BoardState {
     return grid;
   }
 
-  private String[] initialState() {
-    String[] initialState = new String[gridLength()];
-    for (int i = 0; i < gridLength(); i++) {
-      initialState[i] = "-";
-    }
-    return initialState;
-  }
-
   public boolean fullBoard() {
     boolean full = true;
     for (int i = 0; i < gridLength(); i++) {
@@ -41,12 +33,8 @@ public class BoardState {
     return full;
   }
 
-  public boolean cellInBounds(int cell) {
-    return cell >= 0 && cell < gridLength();
-  }
-
   public boolean cellAvailable(int cell) {
-    return grid[cell] == "-";
+    return cellInBounds(cell) && cellBlank(cell);
   }
 
   public String[][] combinations() {
@@ -56,6 +44,22 @@ public class BoardState {
     System.arraycopy(diagonals(), 0, combinations,  columns().length + rows().length, diagonals().length);
 
     return combinations;
+  }
+
+  private String[] initialState() {
+    String[] initialState = new String[gridLength()];
+    for (int i = 0; i < gridLength(); i++) {
+      initialState[i] = "-";
+    }
+    return initialState;
+  }
+
+  private boolean cellInBounds(int cell) {
+    return cell >= 0 && cell < gridLength();
+  }
+
+  private boolean cellBlank(int cell) {
+    return grid[cell] == "-";
   }
 
   private int gridLength() {
