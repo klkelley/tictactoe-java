@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
-class GameTest {
-  private Game game;
+class GameLoopTest {
+  private GameLoop gameLoop;
 
   UserInterface userInterfaceMock = mock(UserInterface.class);
   HumanPlayer humanPlayerMock = mock(HumanPlayer.class);
@@ -14,19 +14,19 @@ class GameTest {
   ValidatorFactory validatorMock = mock(ValidatorFactory.class);
   NumberValidator numberValidatorMock = mock(NumberValidator.class);
   EnterValidator enterValidatorMock = mock(EnterValidator.class);
-  GameState gameStateMock = mock(GameState.class);
+  Game gameMock = mock(Game.class);
 
   @BeforeEach
   public void setUp() {
-    game = new Game(userInterfaceMock, humanPlayerMock, humanPlayerMock, boardStateMock, gameStateMock);
+    gameLoop = new GameLoop(userInterfaceMock, humanPlayerMock, humanPlayerMock, boardStateMock, gameMock);
   }
 
   @Test
   public void testStart() {
     when(userInterfaceMock.userPrompt("Please enter an available cell:\n", enterValidatorMock)).thenReturn("1");
     when(boardStateMock.placeMove("1", "x")).thenReturn(new String[]{"1"});
-    when(gameStateMock.gameOver(boardStateMock)).thenReturn(true);
-    game.start();
+    when(gameMock.gameOver(boardStateMock)).thenReturn(true);
+    gameLoop.start();
     verify(userInterfaceMock, times(1)).displayMessage("Welcome to Tic Tac Toe!\n");
   }
 }
