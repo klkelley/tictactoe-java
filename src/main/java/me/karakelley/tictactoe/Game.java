@@ -30,6 +30,9 @@ public class Game {
 
   private List<String> removeDuplicates(String[] combinations){
     List<String> combos = Arrays.asList(combinations);
-    return combos.stream().distinct().collect(Collectors.toList());
+    return combos.
+            stream().
+            distinct().
+            collect(Collectors.toList());
   }
 }
