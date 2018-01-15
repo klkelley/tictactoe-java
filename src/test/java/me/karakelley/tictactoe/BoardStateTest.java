@@ -3,8 +3,6 @@ package me.karakelley.tictactoe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardStateTest {
@@ -42,7 +40,7 @@ class BoardStateTest {
   }
 
   @Test
-  public void testcellIsAvailable() {
+  public void testCellIsAvailable() {
     assertEquals(true, boardState.cellAvailable(0));
   }
 

@@ -19,8 +19,8 @@ public class Game {
     boolean winner = false;
     String pattern = "[A-Z]";
     String[][] combos = boardState.combinations();
-    for (int i = 0; i < combos.length; i++) {
-      List<String> section = removeDuplicates(combos[i]);
+    for (String[] combo : combos) {
+      List<String> section = removeDuplicates(combo);
       if (section.size() == 1 && section.get(0).matches(pattern)) {
         winner = true;
       }

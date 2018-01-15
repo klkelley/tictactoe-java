@@ -1,10 +1,5 @@
 package me.karakelley.tictactoe;
 
-import javax.swing.text.html.StyleSheet;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class BoardState {
   private String[] grid;
   private int boardSize;
@@ -59,7 +54,7 @@ public class BoardState {
   }
 
   private boolean cellBlank(int cell) {
-    return grid[cell] == "-";
+    return grid[cell].equals("-");
   }
 
   private int gridLength() {

@@ -1,7 +1,5 @@
 package me.karakelley.tictactoe;
 
-import java.util.List;
-
 public class UserInterface {
   private IO io;
   private BoardPresenter boardPresenter;
