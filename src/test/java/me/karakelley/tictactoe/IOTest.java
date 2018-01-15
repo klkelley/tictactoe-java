@@ -28,6 +28,7 @@ public class IOTest {
 
     IO getIO = new IO(stdout, in);
     assertEquals("", getIO.getInput());
+    System.setIn(stdin);
   }
 
   @Test
