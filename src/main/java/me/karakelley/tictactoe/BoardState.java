@@ -32,7 +32,7 @@ public class BoardState {
     return cellInBounds(cell) && cellBlank(cell);
   }
 
-  public String[][] combinations() {
+  public String[][] winningCombinations() {
     String[][] combinations = new String[rows().length + columns().length+ diagonals().length][boardSize];
     System.arraycopy(rows(), 0, combinations, 0, rows().length);
     System.arraycopy(columns(), 0, combinations, rows().length,  columns().length);

@@ -63,6 +63,6 @@ class BoardStateTest {
     boardState.placeMove("0", "X");
     boardState.placeMove("1", "X");
     boardState.placeMove("2", "X");
-    assertArrayEquals(expectedOutput, boardState.combinations());
+    assertArrayEquals(expectedOutput, boardState.winningCombinations());
   }
 }
