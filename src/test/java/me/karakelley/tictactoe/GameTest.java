@@ -3,28 +3,45 @@ package me.karakelley.tictactoe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class GameTest {
-  private Game game;
 
-  UserInterface userInterfaceMock = mock(UserInterface.class);
-  HumanPlayer humanPlayerMock = mock(HumanPlayer.class);
-  BoardState boardStateMock = mock(BoardState.class);
-  ValidatorFactory validatorMock = mock(ValidatorFactory.class);
-  NumberValidator numberValidatorMock = mock(NumberValidator.class);
-  EnterValidator enterValidatorMock = mock(EnterValidator.class);
+  private Game game;
+  BoardState boardState = new BoardState();
 
   @BeforeEach
   public void setUp() {
-    game = new Game(userInterfaceMock, humanPlayerMock, boardStateMock, validatorMock);
+    game = new Game();
   }
 
   @Test
-  public void testStart() {
-    when(userInterfaceMock.userPrompt("Please enter an available cell:\n", enterValidatorMock)).thenReturn("1");
-    when(boardStateMock.placeMove("1", "x")).thenReturn(new String[]{"1"});
-    game.start();
-    verify(userInterfaceMock, times(1)).greetUser();
+  public void testTie() {
+    boardState.placeMove("0", "O");
+    boardState.placeMove("1", "O");
+    boardState.placeMove("2", "X");
+    boardState.placeMove("3", "X");
+    boardState.placeMove("4", "X");
+    boardState.placeMove("5", "O");
+    boardState.placeMove("6", "O");
+    boardState.placeMove("7", "X");
+    boardState.placeMove("8", "O");
+
+    assertEquals(true, game.tie(boardState));
+  }
+
+  @Test
+  public void testGameOver() {
+    boardState.placeMove("0", "O");
+    boardState.placeMove("1", "O");
+    boardState.placeMove("2", "O");
+    boardState.placeMove("3", "X");
+    boardState.placeMove("4", "X");
+    boardState.placeMove("5", "O");
+    boardState.placeMove("6", "O");
+    boardState.placeMove("7", "X");
+    boardState.placeMove("8", "O");
+
+    assertEquals(true, game.gameOver(boardState));
   }
 }

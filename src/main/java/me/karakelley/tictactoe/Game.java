@@ -1,30 +1,38 @@
 package me.karakelley.tictactoe;
 
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Game {
 
-  private UserInterface userInterface;
-  private HumanPlayer humanPlayer;
-  private BoardState boardState;
-  private ValidatorFactory validator;
-
-  public Game(UserInterface userInterface, HumanPlayer humanPlayer, BoardState boardState, ValidatorFactory validator) {
-    this.userInterface = userInterface;
-    this.humanPlayer = humanPlayer;
-    this.boardState = boardState;
-    this.validator = validator;
+  public boolean gameOver(BoardState boardState) {
+    return tie(boardState) || winner(boardState);
   }
 
-  public void start() {
-    userInterface.greetUser();
-    userInterface.userPrompt("Please press \"ENTER\" to continue\n", validator.make("EnterValidator"));
-    userInterface.displayBoard(boardState.getGrid());
-
-    play();
+  public boolean tie(BoardState boardState) {
+    return boardState.fullBoard() && !winner(boardState);
   }
 
-  private void play() {
-    String chosenCell = userInterface.userPrompt("Please enter an available cell:\n", validator.make("NumberValidator"));
-    boardState.placeMove(chosenCell, humanPlayer.getMarker());
-    userInterface.displayBoard(boardState.getGrid());
+  private boolean winner(BoardState boardState) {
+    boolean winner = false;
+    String pattern = "[A-Z]";
+    String[][] combos = boardState.winningCombinations();
+    for (String[] combo : combos) {
+      List<String> section = removeDuplicates(combo);
+      if (section.size() == 1 && section.get(0).matches(pattern)) {
+        winner = true;
+      }
+    }
+    return winner;
+  }
+
+  private List<String> removeDuplicates(String[] combinations){
+    List<String> combos = Arrays.asList(combinations);
+    return combos.
+            stream().
+            distinct().
+            collect(Collectors.toList());
   }
 }

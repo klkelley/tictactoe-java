@@ -32,4 +32,13 @@ public class IOTest {
     IO getIO = new IO(stdout, in);
     assertEquals("", getIO.getInput());
   }
+
+  @Test
+  public void testDisplay() {
+    PrintStream originalOut = System.out;
+    System.setOut(stdout);
+    IO.display("Test");
+    assertEquals("Test", outContent.toString());
+    System.setOut(originalOut);
+  }
 }

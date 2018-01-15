@@ -18,8 +18,7 @@ public class IO {
   }
 
   public String getInput() {
-    String input = inputScanner.nextLine();
-    return input;
+    return inputScanner.nextLine();
   }
 }
 

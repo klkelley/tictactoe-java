@@ -12,6 +12,7 @@ class UserInterfaceTest {
   IO ioMock = mock(IO.class);
   BoardPresenter boardPresenterMock = mock(BoardPresenter.class);
   NumberValidator numberValidatorMock = mock(NumberValidator.class);
+  BoardState boardStateMock = mock(BoardState.class);
 
   @BeforeEach
   public void setUp() {
@@ -19,16 +20,16 @@ class UserInterfaceTest {
   }
 
   @Test
-  public void testGreetUser() {
+  public void testDisplayMessage() {
     doNothing().when(ioMock).display("test");
-    userInterface.greetUser();
+    userInterface.displayMessage("Welcome to Tic Tac Toe!\n");
     verify(ioMock, times(1)).display("Welcome to Tic Tac Toe!\n");
   }
 
   @Test
   public void testDisplayBoard() {
     doNothing().when(ioMock).display("test");
-    userInterface.displayBoard(new String[]{"-","-","-","-","-","-","-","-","-"});
+    userInterface.displayBoard(boardStateMock);
     verify(ioMock, times(1)).display(null);
   }
 

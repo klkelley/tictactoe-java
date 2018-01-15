@@ -1,7 +1,5 @@
 package me.karakelley.tictactoe;
 
-import java.io.ByteArrayInputStream;
-
 public class EnterValidator implements Validator {
 
   @Override
