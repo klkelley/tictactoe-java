@@ -11,6 +11,7 @@ public class HumanUserInterface implements UserInterface {
   private static final String player1 = "Player one";
   private static final String player2 = "Player two";
 
+
   public HumanUserInterface(IO io, BoardPresenter boardPresenter) {
     this.io = io;
     this.boardPresenter = boardPresenter;
