@@ -1,25 +1,24 @@
 package me.karakelley.tictactoe;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 
 public class GameLoop {
 
   private UserInterface userInterface;
-  private HumanPlayer humanPlayer1;
-  private HumanPlayer humanPlayer2;
-  private HumanPlayer[] players;
+  private Player player1;
+  private Player player2;
+  private Player[] players;
 
-  public GameLoop(UserInterface userInterface, HumanPlayer player1, HumanPlayer player2) {
-    this.userInterface = userInterface;
-    this.humanPlayer1 = player1;
-    this.humanPlayer2 = player2;
-    this.players = setUpPlayerOrder();
+  public GameLoop(UserInterface humanUserInterface, Player player1, Player player2) {
+    this.userInterface = humanUserInterface;
+    this.player1 = player1;
+    this.player2 = player2;
+    this.players = new Player[]{player1, player2};
   }
 
   public void start(BoardState boardState, Game game) {
-    userInterface.displayMessage("Welcome to Tic Tac Toe!\n");
+    userInterface.greetUser();
     userInterface.displayMessage("Press ANY key to continue\n");
     userInterface.waitForKeyPress();
     userInterface.displayBoard(boardState);
@@ -29,30 +28,39 @@ public class GameLoop {
 
   private void play(BoardState boardState, Game game) {
     while (!game.gameOver(boardState)) {
-      nextPlayersTurn(boardState, game);
+      nextPlayersTurn(boardState);
     }
-    if (game.tie(boardState)) {
-      userInterface.displayMessage("It's a tie!\n");
-    }
+    gameResults(game, boardState);
   }
 
-  private void nextPlayersTurn(BoardState boardState, Game game) {
+  private void nextPlayersTurn(BoardState boardState) {
     String chosenCell = userInterface.userPrompt("\nPlease enter an available cell:\n", new NumberValidator(boardState));
-    HumanPlayer player = takeTurn();
-    boardState.placeMove(chosenCell, player.getMarker());
+    boardState.placeMove(chosenCell, currentPlayer().getMarker());
+    takeTurn();
     userInterface.displayBoard(boardState);
   }
 
-  private HumanPlayer takeTurn() {
-    Collections.reverse(Arrays.asList(players));
+  private Player lastPlayer() {
+    return players[1];
+  }
+
+  private Player currentPlayer() {
     return players[0];
   }
 
-  private HumanPlayer[] setUpPlayerOrder() {
-    HumanPlayer[] players = new HumanPlayer[2];
-    players[0] = humanPlayer1;
-    players[1] = humanPlayer2;
-    return players;
+  private void takeTurn() {
+    Collections.reverse(Arrays.asList(players));
   }
 
+  private void gameResults(Game game, BoardState boardState) {
+    if (game.tie(boardState)) {
+      userInterface.displayTie();
+    } else {
+      userInterface.displayWinner(findWinner());
+    }
+  }
+
+  private boolean findWinner() {
+    return lastPlayer() == player1;
+  }
 }
