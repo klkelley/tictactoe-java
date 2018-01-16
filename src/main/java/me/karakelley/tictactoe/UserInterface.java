@@ -29,10 +29,8 @@ public class UserInterface {
   public void waitForKeyPress() {
     try {
       io.anyKey();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+    } catch (IOException|InterruptedException e) {
+      throw new RuntimeException(e);
     }
   }
 
