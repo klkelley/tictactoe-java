@@ -25,11 +25,9 @@ public class IOTest {
   @Test
   public void testGetInput() {
     ByteArrayInputStream in = new ByteArrayInputStream("\r".getBytes());
-    System.setIn(in);
 
     IO getIO = new IO(stdout, in);
     assertEquals("", getIO.getInput());
-    System.setIn(stdin);
   }
 
   @Test
@@ -45,10 +43,8 @@ public class IOTest {
   @Test
   public void testAnyKey() throws IOException, InterruptedException {
     ByteArrayInputStream input = new ByteArrayInputStream("T".getBytes());
-    System.setIn(input);
     IO getIO = new IO(stdout, input);
 
     assertEquals('T',     getIO.anyKey());
-    System.setIn(stdin);
   }
 }
