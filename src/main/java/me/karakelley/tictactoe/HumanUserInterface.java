@@ -2,24 +2,25 @@ package me.karakelley.tictactoe;
 
 import java.io.IOException;
 
-public class UserInterface {
+public class HumanUserInterface implements UserInterface {
   private IO io;
   private BoardPresenter boardPresenter;
 
-  public UserInterface(IO io, BoardPresenter boardPresenter) {
+  private static final String tie = "It's a tie!\n";
+  private static final String welcome = "Welcome to Tic Tac Toe!\n";
+  private static final String player1Wins = "Player one wins!\n";
+  private static final String player2Wins = "Player two wins!\n";
+
+  public HumanUserInterface(IO io, BoardPresenter boardPresenter) {
     this.io = io;
     this.boardPresenter = boardPresenter;
-  }
-
-  public void displayMessage(String message) {
-    io.display(message);
   }
 
   public String userPrompt(String message, Validator validator) {
     String input;
 
     do {
-      io.display(message);
+      displayMessage(message);
       input = io.getInput();
 
     } while(!validator.isValidInput(input));
@@ -34,7 +35,27 @@ public class UserInterface {
     }
   }
 
+  public void displayTie() {
+    displayMessage(tie);
+  }
+
   public void displayBoard(BoardState board) {
-    io.display(boardPresenter.prettify(board.getGrid()));
+    displayMessage(boardPresenter.prettify(board.getGrid()));
+  }
+
+  public void greetUser() {
+    displayMessage(welcome);
+  }
+
+  public void displayWinner(boolean firstPlayerWins) {
+    if (firstPlayerWins) {
+      displayMessage(player1Wins);
+    } else {
+      displayMessage(player2Wins);
+    }
+  }
+
+  public void displayMessage(String message) {
+    io.display(message);
   }
 }
