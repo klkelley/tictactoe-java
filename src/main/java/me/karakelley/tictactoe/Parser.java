@@ -14,10 +14,12 @@ import java.util.List;
 public class Parser {
   private Reader filename;
   private JSONParser jsonParser;
+  JSONObject jsonObject;
 
-  public Parser(FileReader filename, JSONParser jsonParser) {
+  public Parser(FileReader filename, JSONParser jsonParser) throws IOException, ParseException {
     this.filename = filename;
     this.jsonParser = jsonParser;
+    this.jsonObject = convertFileToJsonObject();
   }
 
 
@@ -30,7 +32,6 @@ public class Parser {
   }
 
   public ArrayList<String> markers() throws IOException, ParseException {
-    JSONObject jsonObject = convertFileToJsonObject();
     JSONObject markers = (JSONObject)jsonObject.get("markers");
     return new ArrayList<>(markers.values());
   }
