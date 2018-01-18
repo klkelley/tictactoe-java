@@ -1,5 +1,6 @@
 package me.karakelley.tictactoe;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -19,7 +20,8 @@ public class GameLoop {
 
   public void start(BoardState boardState, Game game) {
     userInterface.displayMessage("Welcome to Tic Tac Toe!\n");
-    userInterface.userPrompt("Please press \"ENTER\" to continue\n", new EnterValidator());
+    userInterface.displayMessage("Press ANY key to continue\n");
+    userInterface.waitForKeyPress();
     userInterface.displayBoard(boardState);
 
     play(boardState, game);
@@ -35,7 +37,7 @@ public class GameLoop {
   }
 
   private void nextPlayersTurn(BoardState boardState, Game game) {
-    String chosenCell = userInterface.userPrompt("Please enter an available cell:\n", new NumberValidator(boardState));
+    String chosenCell = userInterface.userPrompt("\nPlease enter an available cell:\n", new NumberValidator(boardState));
     HumanPlayer player = takeTurn();
     boardState.placeMove(chosenCell, player.getMarker());
     userInterface.displayBoard(boardState);

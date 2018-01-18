@@ -1,5 +1,7 @@
 package me.karakelley.tictactoe;
 
+import java.io.IOException;
+
 public class UserInterface {
   private IO io;
   private BoardPresenter boardPresenter;
@@ -10,7 +12,6 @@ public class UserInterface {
   }
 
   public void displayMessage(String message) {
-
     io.display(message);
   }
 
@@ -23,6 +24,14 @@ public class UserInterface {
 
     } while(!validator.isValidInput(input));
       return input;
+  }
+
+  public void waitForKeyPress() {
+    try {
+      io.anyKey();
+    } catch (IOException|InterruptedException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   public void displayBoard(BoardState board) {

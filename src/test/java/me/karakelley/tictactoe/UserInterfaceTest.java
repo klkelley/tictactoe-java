@@ -3,6 +3,8 @@ package me.karakelley.tictactoe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -39,5 +41,12 @@ class UserInterfaceTest {
     when(numberValidatorMock.isValidInput("1")).thenReturn(true);
     doNothing().when(ioMock).display("test");
     assertEquals("1", userInterface.userPrompt("test", numberValidatorMock));
+  }
+
+  @Test
+  public void testWaitForKeyPress() throws IOException, InterruptedException {
+    when(ioMock.anyKey()).thenReturn(88);
+    userInterface.waitForKeyPress();
+    verify(ioMock, times(1)).anyKey();
   }
 }

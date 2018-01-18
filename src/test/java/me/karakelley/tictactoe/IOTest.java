@@ -3,10 +3,8 @@ package me.karakelley.tictactoe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
+import java.io.*;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -27,7 +25,6 @@ public class IOTest {
   @Test
   public void testGetInput() {
     ByteArrayInputStream in = new ByteArrayInputStream("\r".getBytes());
-    System.setIn(in);
 
     IO getIO = new IO(stdout, in);
     assertEquals("", getIO.getInput());
@@ -38,7 +35,16 @@ public class IOTest {
     PrintStream originalOut = System.out;
     System.setOut(stdout);
     IO.display("Test");
+
     assertEquals("Test", outContent.toString());
     System.setOut(originalOut);
+  }
+
+  @Test
+  public void testAnyKey() throws IOException, InterruptedException {
+    ByteArrayInputStream input = new ByteArrayInputStream("T".getBytes());
+    IO getIO = new IO(stdout, input);
+
+    assertEquals('T',     getIO.anyKey());
   }
 }
