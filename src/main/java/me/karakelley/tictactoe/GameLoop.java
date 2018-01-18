@@ -5,23 +5,23 @@ import java.util.Collections;
 
 public class GameLoop {
 
-  private UserInterface userInterface;
+  private UserInterface UI;
   private Player player1;
   private Player player2;
   private Player[] players;
 
-  public GameLoop(UserInterface humanUserInterface, Player player1, Player player2) {
-    this.userInterface = humanUserInterface;
+  public GameLoop(UserInterface UI, Player player1, Player player2) {
+    this.UI = UI;
     this.player1 = player1;
     this.player2 = player2;
     this.players = new Player[]{player1, player2};
   }
 
   public void start(BoardState boardState, Game game) {
-    userInterface.greetUser();
-    userInterface.displayMessage("Press ANY key to continue\n");
-    userInterface.waitForKeyPress();
-    userInterface.displayBoard(boardState);
+    UI.greetUser();
+    UI.displayMessage("Press ANY key to continue\n");
+    UI.waitForKeyPress();
+    UI.displayBoard(boardState);
 
     play(boardState, game);
   }
@@ -34,10 +34,10 @@ public class GameLoop {
   }
 
   private void nextPlayersTurn(BoardState boardState) {
-    String chosenCell = userInterface.userPrompt("\nPlease enter an available cell:\n", new NumberValidator(boardState));
+    String chosenCell = UI.userPrompt("\nPlease enter an available cell:\n", new NumberValidator(boardState));
     boardState.placeMove(chosenCell, currentPlayer().getMarker());
     takeTurn();
-    userInterface.displayBoard(boardState);
+    UI.displayBoard(boardState);
   }
 
   private Player lastPlayer() {
@@ -54,9 +54,9 @@ public class GameLoop {
 
   private void gameResults(Game game, BoardState boardState) {
     if (game.tie(boardState)) {
-      userInterface.displayTie();
+      UI.displayTie();
     } else {
-      userInterface.displayWinner(findWinner());
+      UI.displayWinner(findWinner());
     }
   }
 
