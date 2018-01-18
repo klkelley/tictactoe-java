@@ -21,24 +21,24 @@ class ParserTest {
   private Parser parser;
 
   @BeforeEach
-  public void setUp()  throws FileNotFoundException {
-    parser = new Parser(new FileReader("../config.json"), jsonParser);
+  public void setUp() throws IOException, ParseException {
+    parser = new Parser(new FileReader("/Users/karakelley/IdeaProjects/tictactoe/src/test/resources/config.json"), jsonParser);
   }
 
   @Test
   public void getMarkers() throws IOException, ParseException {
-    Collection<String> expectedOutput = new ArrayList<>(Arrays.asList("O", "X"));
+    Collection<String> expectedOutput = new ArrayList<>(Arrays.asList("Z", "Q"));
     assertEquals(expectedOutput, parser.markers());
   }
 
   @Test
   public void testFirstMaker() throws IOException, ParseException {
-    assertEquals("X", parser.firstMarker());
+    assertEquals("Q", parser.firstMarker());
   }
 
   @Test
   public void testSecondMarker() throws IOException, ParseException {
-    assertEquals("O", parser.secondMarker());
+    assertEquals("Z", parser.secondMarker());
   }
 
 }
