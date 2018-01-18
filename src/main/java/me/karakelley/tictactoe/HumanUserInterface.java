@@ -8,8 +8,8 @@ public class HumanUserInterface implements UserInterface {
 
   private static final String tie = "It's a tie!\n";
   private static final String welcome = "Welcome to Tic Tac Toe!\n";
-  private static final String player1Wins = "Player one wins!\n";
-  private static final String player2Wins = "Player two wins!\n";
+  private static final String player1 = "Player one";
+  private static final String player2 = "Player two";
 
   public HumanUserInterface(IO io, BoardPresenter boardPresenter) {
     this.io = io;
@@ -48,14 +48,14 @@ public class HumanUserInterface implements UserInterface {
   }
 
   public void displayWinner(boolean firstPlayerWins) {
-    if (firstPlayerWins) {
-      displayMessage(player1Wins);
-    } else {
-      displayMessage(player2Wins);
-    }
+    displayMessage(String.format("%s wins!\n", winningStatement(firstPlayerWins)));
   }
 
   public void displayMessage(String message) {
     io.display(message);
+  }
+
+  private String winningStatement(boolean firstPlayerWins) {
+    return firstPlayerWins ? player1 : player2;
   }
 }
