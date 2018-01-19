@@ -12,7 +12,7 @@ public class GameConfiguration {
   private String path = System.getProperty("configuration");
   private Parser parser;
 
-  public GameConfiguration() throws IOException, ParseException {
+  public GameConfiguration() {
     this.parser = setupParser();
     this.player1marker = "X";
     this.player2marker = "O";
@@ -28,9 +28,13 @@ public class GameConfiguration {
     return player2marker;
   }
 
-  private Parser setupParser() throws IOException, ParseException {
+  private Parser setupParser(){
     if (path != null) {
-      parser = new Parser(new FileReader(path), new JSONParser());
+      try {
+        parser = new Parser(new FileReader(path), new JSONParser());
+      } catch (IOException|ParseException e) {
+        throw new RuntimeException(e);
+      }
     }
     return parser;
   }
