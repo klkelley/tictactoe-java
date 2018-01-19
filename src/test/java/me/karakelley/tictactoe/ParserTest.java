@@ -20,7 +20,7 @@ class ParserTest {
 
   @BeforeEach
   public void setUp() throws IOException, ParseException {
-    parser = new Parser(new FileReader("/Users/karakelley/IdeaProjects/tictactoe/src/test/resources/config.json"), jsonParser);
+    parser = new Parser(new FileReader("src/test/resources/config.json"), jsonParser);
   }
 
   @Test

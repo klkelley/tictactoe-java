@@ -10,14 +10,14 @@ class GameConfigurationTest {
 
   @Test
   public void testGetPlayer1MarkerWithConfig() {
-    System.setProperty("configuration", "/Users/karakelley/IdeaProjects/tictactoe/src/test/resources/config.json");
+    System.setProperty("configuration", "src/test/resources/config.json");
     gameConfiguration = new GameConfiguration();
     assertEquals("Q", gameConfiguration.getPlayer1marker());
   }
 
   @Test
   public void testGetPlayer2MarkerWithConfig() {
-    System.setProperty("configuration", "/Users/karakelley/IdeaProjects/tictactoe/src/test/resources/config.json");
+    System.setProperty("configuration", "src/test/resources/config.json");
     gameConfiguration = new GameConfiguration();
     assertEquals("Z", gameConfiguration.getPlayer2marker());
   }
