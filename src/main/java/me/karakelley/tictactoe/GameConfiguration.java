@@ -18,17 +18,17 @@ public class GameConfiguration {
     this.player2marker = "O";
   }
 
-  public String getPlayer1marker() throws IOException, ParseException {
+  public String getPlayer1marker() {
     setPlayerMarkers();
     return player1marker;
   }
 
-  public String getPlayer2marker() throws IOException, ParseException {
+  public String getPlayer2marker() {
     setPlayerMarkers();
     return player2marker;
   }
 
-  private Parser setupParser(){
+  private Parser setupParser() {
     if (path != null) {
       try {
         parser = new Parser(new FileReader(path), new JSONParser());
@@ -39,7 +39,7 @@ public class GameConfiguration {
     return parser;
   }
 
-  private void setPlayerMarkers() throws IOException, ParseException {
+  private void setPlayerMarkers() {
     if (parser != null) {
       player1marker = parser.firstMarker();
       player2marker = parser.secondMarker();

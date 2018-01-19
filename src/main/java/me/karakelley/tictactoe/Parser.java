@@ -22,16 +22,15 @@ public class Parser {
     this.jsonObject = convertFileToJsonObject();
   }
 
-
-  public String firstMarker() throws IOException, ParseException {
+  public String firstMarker() {
     return markers().get(1);
   }
 
-  public String secondMarker() throws IOException, ParseException {
+  public String secondMarker() {
     return markers().get(0);
   }
 
-  public ArrayList<String> markers() throws IOException, ParseException {
+  public ArrayList<String> markers() {
     JSONObject markers = (JSONObject)jsonObject.get("markers");
     return new ArrayList<>(markers.values());
   }

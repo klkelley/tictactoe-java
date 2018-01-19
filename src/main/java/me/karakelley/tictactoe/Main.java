@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Main {
 
-  public static void main(String[] args) throws IOException, ParseException {
+  public static void main(String[] args) {
 
     IO io = new IO(System.out, System.in);
     Game game = new Game();
