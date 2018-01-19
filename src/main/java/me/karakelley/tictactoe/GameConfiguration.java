@@ -19,12 +19,10 @@ public class GameConfiguration {
   }
 
   public String getPlayer1marker() {
-    setPlayerMarkers();
     return player1marker;
   }
 
   public String getPlayer2marker() {
-    setPlayerMarkers();
     return player2marker;
   }
 
@@ -36,13 +34,12 @@ public class GameConfiguration {
         throw new RuntimeException(e);
       }
     }
+    setPlayerMarkers();
     return parser;
   }
 
   private void setPlayerMarkers() {
-    if (parser != null) {
-      player1marker = parser.firstMarker();
-      player2marker = parser.secondMarker();
-    }
+    player1marker = parser.firstMarker();
+    player2marker = parser.secondMarker();
   }
 }
