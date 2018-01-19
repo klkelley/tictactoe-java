@@ -13,7 +13,6 @@ public class Main {
     Player humanPlayer = new HumanPlayer(gameConfiguration.getPlayer1marker());
     Player humanPlayer1 = new HumanPlayer(gameConfiguration.getPlayer2marker());
 
-
     GameLoop gameLoop = new GameLoop(humanUserInterface, humanPlayer, humanPlayer1);
     gameLoop.start(boardState, game);
   }
