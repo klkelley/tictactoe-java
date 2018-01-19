@@ -1,6 +1,6 @@
 package me.karakelley.tictactoe;
 
-public class HumanPlayer {
+public class HumanPlayer implements Player{
   private String marker;
 
   public String getMarker() {

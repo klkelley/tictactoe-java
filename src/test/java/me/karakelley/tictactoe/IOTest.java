@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -28,6 +27,7 @@ public class IOTest {
 
     IO getIO = new IO(stdout, in);
     assertEquals("", getIO.getInput());
+    System.setIn(stdin);
   }
 
   @Test

@@ -8,7 +8,7 @@ import static org.mockito.Mockito.*;
 class GameLoopTest {
   private GameLoop gameLoop;
 
-  UserInterface userInterfaceMock = mock(UserInterface.class);
+  HumanUserInterface humanUserInterfaceMock = mock(HumanUserInterface.class);
   HumanPlayer humanPlayerMock = mock(HumanPlayer.class);
   BoardState boardStateMock = mock(BoardState.class);
   EnterValidator enterValidatorMock = mock(EnterValidator.class);
@@ -16,15 +16,16 @@ class GameLoopTest {
 
   @BeforeEach
   public void setUp() {
-    gameLoop = new GameLoop(userInterfaceMock, humanPlayerMock, humanPlayerMock);
+    gameLoop = new GameLoop(humanUserInterfaceMock, humanPlayerMock, humanPlayerMock);
   }
 
   @Test
   public void testStart() {
-    when(userInterfaceMock.userPrompt("Please enter an available cell:\n", enterValidatorMock)).thenReturn("1");
+    when(humanUserInterfaceMock.userPrompt("Please enter an available cell:\n", enterValidatorMock)).thenReturn("1");
     when(boardStateMock.placeMove("1", "x")).thenReturn(new String[]{"1"});
     when(gameMock.gameOver(boardStateMock)).thenReturn(true);
     gameLoop.start(boardStateMock, gameMock);
-    verify(userInterfaceMock, times(1)).displayMessage("Welcome to Tic Tac Toe!\n");
+    verify(humanUserInterfaceMock, times(1)).greetUser();
   }
+
 }
