@@ -7,7 +7,6 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
 
 public class Parser {
   private Reader filename;
@@ -20,17 +19,9 @@ public class Parser {
     this.jsonObject = convertFileToJsonObject();
   }
 
-  public String firstMarker() {
-    return markers().get(1);
-  }
-
-  public String secondMarker() {
-    return markers().get(0);
-  }
-
-  public ArrayList<String> markers() {
-    JSONObject markers = (JSONObject)jsonObject.get("markers");
-    return new ArrayList<>(markers.values());
+  public String getValues(String markers, String player) {
+    JSONObject parent = (JSONObject)jsonObject.get(markers);
+    return (String) parent.get(player);
   }
 
   private Object parseFile() throws IOException, ParseException {
