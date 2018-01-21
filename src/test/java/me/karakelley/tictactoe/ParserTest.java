@@ -24,19 +24,12 @@ class ParserTest {
   }
 
   @Test
-  public void getMarkers() {
-    Collection<String> expectedOutput = new ArrayList<>(Arrays.asList("Z", "Q"));
-    assertEquals(expectedOutput, parser.markers());
+  public void testGetValuesofPlayerOne() {
+    assertEquals("Q", parser.getValues("markers", "playerOne"));
   }
 
   @Test
-  public void testFirstMaker() {
-    assertEquals("Q", parser.firstMarker());
+  public void testGetValuesofPlayerTwo() {
+    assertEquals("Z", parser.getValues("markers", "playerTwo"));
   }
-
-  @Test
-  public void testSecondMarker() {
-    assertEquals("Z", parser.secondMarker());
-  }
-
 }
