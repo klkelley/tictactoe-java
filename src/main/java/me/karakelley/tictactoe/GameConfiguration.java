@@ -9,22 +9,23 @@ import java.io.IOException;
 public class GameConfiguration {
   private String player1marker;
   private String player2marker;
-  private String path = System.getProperty("configuration");
+  private String path;
   private Parser parser;
 
-  public GameConfiguration() {
+  public GameConfiguration(String path) {
+    this.path = path;
     this.parser = setupParser();
     this.player1marker = "X";
     this.player2marker = "O";
   }
 
-  public String getPlayer1marker() {
-    setPlayer1Marker();
+  public String getPlayer1marker(String markers, String player) {
+    setPlayer1Marker(markers, player);
     return player1marker;
   }
 
-  public String getPlayer2marker() {
-    setPlayer2Marker();
+  public String getPlayer2marker(String markers, String player) {
+    setPlayer2Marker(markers, player);
     return player2marker;
   }
 
@@ -39,15 +40,15 @@ public class GameConfiguration {
     return parser;
   }
 
-  private void setPlayer1Marker() {
+  private void setPlayer1Marker(String markers, String player) {
     if (validParser()) {
-      player1marker = parser.firstMarker();
+      player1marker = parser.getValues(markers, player);
     }
   }
 
-  private void setPlayer2Marker() {
+  private void setPlayer2Marker(String markers, String player) {
     if (validParser()) {
-      player2marker = parser.secondMarker();
+      player2marker = parser.getValues(markers, player);
     }
   }
 
