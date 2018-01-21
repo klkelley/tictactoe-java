@@ -8,7 +8,7 @@ $ mvn package
 
 ### Run project 
 ```
-$ java -cp target/tictactoe-1.0-SNAPSHOT-jar-with-dependencies.jar me.karakelley.tictactoe.Main
+$ java -jar target/tictactoe.jar
 ```
 
 ### Run tests
