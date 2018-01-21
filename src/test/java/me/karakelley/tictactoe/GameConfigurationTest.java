@@ -10,29 +10,25 @@ class GameConfigurationTest {
 
   @Test
   public void testGetPlayer1MarkerWithConfig() {
-    System.setProperty("configuration", "src/test/resources/config.json");
-    gameConfiguration = new GameConfiguration();
-    assertEquals("Q", gameConfiguration.getPlayer1marker());
+    gameConfiguration = new GameConfiguration("src/test/resources/config.json");
+    assertEquals("Q", gameConfiguration.getPlayer1marker("markers", "playerOne"));
   }
 
   @Test
   public void testGetPlayer2MarkerWithConfig() {
-    System.setProperty("configuration", "src/test/resources/config.json");
-    gameConfiguration = new GameConfiguration();
-    assertEquals("Z", gameConfiguration.getPlayer2marker());
+    gameConfiguration = new GameConfiguration("src/test/resources/config.json");
+    assertEquals("Z", gameConfiguration.getPlayer2marker("markers", "playerTwo"));
   }
 
   @Test
   public void testGetPlayer1MarkerNoConfig() {
-    System.clearProperty("configuration");
-    gameConfiguration = new GameConfiguration();
-    assertEquals("X", gameConfiguration.getPlayer1marker());
+    gameConfiguration = new GameConfiguration(System.getProperty("configuration"));
+    assertEquals("X", gameConfiguration.getPlayer1marker("markers", "playerOne"));
   }
 
   @Test
   public void testGetPlayer2MarkerNoConfig() {
-    System.clearProperty("configuration");
-    gameConfiguration = new GameConfiguration();
-    assertEquals("O", gameConfiguration.getPlayer2marker());
+    gameConfiguration = new GameConfiguration(System.getProperty("configuration"));
+    assertEquals("O", gameConfiguration.getPlayer2marker("markers", "playerTwo"));
   }
 }
