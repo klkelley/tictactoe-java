@@ -1,5 +1,9 @@
 package me.karakelley.tictactoe;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class BoardState {
   private String[] grid;
   private int boardSize;
@@ -109,5 +113,12 @@ public class BoardState {
     diagonals[0] = leftDiagonal();
     diagonals[1] = rightDiagonal();
     return diagonals;
+  }
+
+  public List<Integer> availableCells() {
+    return IntStream.range(0, grid.length)
+            .filter(this::cellBlank)
+            .boxed()
+            .collect(Collectors.toList());
   }
 }

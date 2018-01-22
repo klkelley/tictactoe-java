@@ -19,7 +19,7 @@ public class BoardPresenter {
         board.append(rowDivider);
       }
     }
-    board.append("\n ");
+    board.append("\n\n");
 
     return String.format(board.toString(), updatedBoardGrid(grid));
   }

@@ -5,11 +5,10 @@ import java.io.IOException;
 public class HumanUserInterface implements UserInterface {
   private IO io;
   private BoardPresenter boardPresenter;
-
-  private static final String tie = "It's a tie!\n";
-  private static final String welcome = "Welcome to Tic Tac Toe!\n";
-  private static final String player1 = "Player one";
-  private static final String player2 = "Player two";
+  private static final String TIE = "It's a tie!\n";
+  private static final String WELCOME = "Welcome to Tic Tac Toe!\n";
+  private String playerOneWins = "Player one wins!\n";
+  private String playerTwoWins = "Player two wins!\n";
 
 
   public HumanUserInterface(IO io, BoardPresenter boardPresenter) {
@@ -36,8 +35,16 @@ public class HumanUserInterface implements UserInterface {
     }
   }
 
+  public void setWinMessage(String message) {
+    playerOneWins = message;
+  }
+
+  public void setLoseMessage(String message) {
+    playerTwoWins = message;
+  }
+
   public void displayTie() {
-    displayMessage(tie);
+    displayMessage(TIE);
   }
 
   public void displayBoard(BoardState board) {
@@ -45,11 +52,11 @@ public class HumanUserInterface implements UserInterface {
   }
 
   public void greetUser() {
-    displayMessage(welcome);
+    displayMessage(WELCOME);
   }
 
   public void displayWinner(boolean firstPlayerWins) {
-    displayMessage(String.format("%s wins!\n", winningStatement(firstPlayerWins)));
+    displayMessage(String.format(winningStatement(firstPlayerWins)));
   }
 
   public void clearScreen() {
@@ -62,6 +69,6 @@ public class HumanUserInterface implements UserInterface {
   }
 
   private String winningStatement(boolean firstPlayerWins) {
-    return firstPlayerWins ? player1 : player2;
+    return firstPlayerWins ? playerOneWins : playerTwoWins;
   }
 }
