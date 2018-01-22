@@ -9,11 +9,10 @@ public class Main {
     BoardState boardState = new BoardState();
     BoardPresenter boardPresenter = new BoardPresenter();
     UserInterface humanUserInterface = new HumanUserInterface(io, boardPresenter);
-    GameConfiguration gameConfiguration = new GameConfiguration(System.getProperty("configuration"));
-    Player humanPlayer = new HumanPlayer(gameConfiguration.getPlayer1marker("markers", "playerOne"));
-    Player humanPlayer1 = new HumanPlayer(gameConfiguration.getPlayer2marker("markers", "playerTwo"));
+    GameConfiguration gameConfiguration = new GameConfiguration(System.getProperty("configuration"), humanUserInterface, new PlayerFactoryImplementation());
 
-    GameLoop gameLoop = new GameLoop(humanUserInterface, humanPlayer, humanPlayer1);
+    gameConfiguration.gameMenu();
+    GameLoop gameLoop = new GameLoop(humanUserInterface, gameConfiguration.getPlayer1(), gameConfiguration.getPlayer2());
     gameLoop.start(boardState, game);
   }
 }

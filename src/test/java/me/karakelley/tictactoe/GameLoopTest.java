@@ -25,7 +25,7 @@ class GameLoopTest {
     when(boardStateMock.placeMove("1", "x")).thenReturn(new String[]{"1"});
     when(gameMock.gameOver(boardStateMock)).thenReturn(true);
     gameLoop.start(boardStateMock, gameMock);
-    verify(humanUserInterfaceMock, times(1)).greetUser();
+    verify(humanUserInterfaceMock, times(1)).displayBoard(boardStateMock);
   }
 
 }
