@@ -7,25 +7,57 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class GameConfiguration {
-  private String player1marker;
-  private String player2marker;
+  private final String HUMAN_PLAYER_SELECTION = "1";
+  private final String opponentType = "\nChoose an opponent:\n(1) Human\n(2) Easy Computer Player\n(3) Hard Computer Player\n(4) Impossible Computer Player\n";
+  private String player1marker = "X";
+  private String player2marker = "O";
   private String path;
   private Parser parser;
+  private UserInterface UI;
+  private PlayerFactory playerFactory;
+  private Player player1;
+  private Player player2;
 
-  public GameConfiguration(String path) {
+  public GameConfiguration(String path, UserInterface UI, PlayerFactory playerFactory) {
     this.path = path;
+    this.UI = UI;
     this.parser = setupParser();
-    this.player1marker = "X";
-    this.player2marker = "O";
+    this.playerFactory = playerFactory;
   }
 
-  public String getPlayer1marker(String markers, String player) {
-    setPlayer1Marker(markers, player);
+  public void gameMenu() {
+    UI.greetUser();
+    UI.displayMessage("Press ANY key to continue\n");
+    UI.waitForKeyPress();
+
+    setUpPlayers();
+  }
+
+  public Player getPlayer2() {
+    return player2;
+  }
+
+  public Player getPlayer1() {
+    return player1;
+  }
+
+  public void chooseOpponent(String choice) {
+    if (!choice.equals(HUMAN_PLAYER_SELECTION)) System.exit(0);
+    player2 = playerFactory.makePlayer(HUMAN_PLAYER_SELECTION, getPlayer2marker());
+  }
+
+  private void setUpPlayers() {
+    chooseOpponent(UI.userPrompt(opponentType, new PlayerTypeValidator()));
+    player1 = playerFactory.makePlayer(HUMAN_PLAYER_SELECTION, getPlayer1marker());
+  }
+
+  private String getPlayer1marker() {
+    setPlayer1Marker("markers", "playerOne");
     return player1marker;
   }
 
-  public String getPlayer2marker(String markers, String player) {
-    setPlayer2Marker(markers, player);
+  private String getPlayer2marker() {
+    setPlayer2Marker("markers", "playerTwo");
     return player2marker;
   }
 

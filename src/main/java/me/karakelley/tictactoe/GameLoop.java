@@ -18,9 +18,6 @@ public class GameLoop {
   }
 
   public void start(BoardState boardState, Game game) {
-    UI.greetUser();
-    UI.displayMessage("Press ANY key to continue\n");
-    UI.waitForKeyPress();
     UI.displayBoard(boardState);
 
     play(boardState, game);
