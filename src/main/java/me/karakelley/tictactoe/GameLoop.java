@@ -5,20 +5,20 @@ import java.util.Collections;
 
 public class GameLoop {
 
-  private UserInterface UI;
+  private UserInterface userInterface;
   private Player player1;
   private Player player2;
   private Player[] players;
 
-  public GameLoop(UserInterface UI, Player player1, Player player2) {
-    this.UI = UI;
+  public GameLoop(UserInterface userInterface, Player player1, Player player2) {
+    this.userInterface = userInterface;
     this.player1 = player1;
     this.player2 = player2;
     this.players = new Player[]{player1, player2};
   }
 
   public void start(BoardState boardState, Game game) {
-    UI.displayBoard(boardState);
+    userInterface.displayBoard(boardState);
 
     play(boardState, game);
   }
@@ -31,9 +31,9 @@ public class GameLoop {
   }
 
   private void nextPlayersTurn(BoardState boardState) {
-    UI.clearScreen();
-    UI.displayBoard(boardState);
-    String chosenCell = UI.userPrompt("\nPlease enter an available cell:\n", new NumberValidator(boardState));
+    userInterface.clearScreen();
+    userInterface.displayBoard(boardState);
+    String chosenCell = userInterface.userPrompt("\nPlease enter an available cell:\n", new NumberValidator(boardState));
     boardState.placeMove(chosenCell, currentPlayer().getMarker());
     takeTurn();
   }
@@ -52,9 +52,9 @@ public class GameLoop {
 
   private void gameResults(Game game, BoardState boardState) {
     if (game.tie(boardState)) {
-      UI.displayTie();
+      userInterface.displayTie();
     } else {
-      UI.displayWinner(findWinner());
+      userInterface.displayWinner(findWinner());
     }
   }
 
