@@ -31,10 +31,11 @@ public class GameLoop {
   }
 
   private void nextPlayersTurn(BoardState boardState) {
+    UI.clearScreen();
+    UI.displayBoard(boardState);
     String chosenCell = UI.userPrompt("\nPlease enter an available cell:\n", new NumberValidator(boardState));
     boardState.placeMove(chosenCell, currentPlayer().getMarker());
     takeTurn();
-    UI.displayBoard(boardState);
   }
 
   private Player lastPlayer() {

@@ -52,6 +52,11 @@ public class HumanUserInterface implements UserInterface {
     displayMessage(String.format("%s wins!\n", winningStatement(firstPlayerWins)));
   }
 
+  public void clearScreen() {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+  }
+
   public void displayMessage(String message) {
     io.display(message);
   }

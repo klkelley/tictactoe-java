@@ -9,4 +9,5 @@ public interface UserInterface {
   void displayBoard(BoardState board);
   void displayMessage(String message);
   void displayTie();
+  void clearScreen();
 }
