@@ -10,4 +10,6 @@ public interface UserInterface {
   void displayMessage(String message);
   void displayTie();
   void clearScreen();
+  void setWinMessage(String s);
+  void setLoseMessage(String s);
 }

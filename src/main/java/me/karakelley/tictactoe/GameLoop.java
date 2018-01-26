@@ -18,7 +18,7 @@ public class GameLoop {
   }
 
   public void start(BoardState boardState, Game game) {
-    userInterface.displayBoard(boardState);
+    showBoard(boardState);
 
     play(boardState, game);
   }
@@ -31,11 +31,11 @@ public class GameLoop {
   }
 
   private void nextPlayersTurn(BoardState boardState) {
-    userInterface.clearScreen();
-    userInterface.displayBoard(boardState);
-    String chosenCell = userInterface.userPrompt("\nPlease enter an available cell:\n", new NumberValidator(boardState));
+    Player player = currentPlayer();
+    String chosenCell = player.pickMove(boardState);
     boardState.placeMove(chosenCell, currentPlayer().getMarker());
     takeTurn();
+    showBoard(boardState);
   }
 
   private Player lastPlayer() {
@@ -56,6 +56,11 @@ public class GameLoop {
     } else {
       userInterface.displayWinner(findWinner());
     }
+  }
+
+  private void showBoard(BoardState boardState) {
+    userInterface.clearScreen();
+    userInterface.displayBoard(boardState);
   }
 
   private boolean findWinner() {

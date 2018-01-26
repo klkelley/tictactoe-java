@@ -3,6 +3,10 @@ package me.karakelley.tictactoe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardStateTest {
@@ -64,5 +68,19 @@ class BoardStateTest {
     boardState.placeMove("1", "X");
     boardState.placeMove("2", "X");
     assertArrayEquals(expectedOutput, boardState.winningCombinations());
+  }
+
+  @Test
+  public void testAvailableCells() {
+    List<Integer> expectedOutput = new ArrayList<>(Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8));
+    assertEquals(expectedOutput, boardState.availableCells());
+  }
+
+  @Test
+  public void testAvailableCellsNotChosen() {
+    boardState.placeMove("0", "X");
+    boardState.placeMove("3", "O");
+    List<Integer> expectedOutput = new ArrayList<>(Arrays.asList(1, 2, 4, 5, 6, 7, 8));
+    assertEquals(expectedOutput, boardState.availableCells());
   }
 }

@@ -27,7 +27,7 @@ class BoardPresenterTest {
                           "   |   |   \n" +
                           " 6 | 7 | 8 \n" +
                           "   |   |   \n" +
-                          "\n ", boardPresenter.prettify(blankGrid));
+                          "\n\n", boardPresenter.prettify(blankGrid));
   }
 
   @Test
@@ -44,7 +44,7 @@ class BoardPresenterTest {
                           "   |   |   \n" +
                           " 6 | 7 | 8 \n" +
                           "   |   |   \n" +
-                          "\n ", boardPresenter.prettify(testGrid));
+                          "\n\n", boardPresenter.prettify(testGrid));
 
   }
 }

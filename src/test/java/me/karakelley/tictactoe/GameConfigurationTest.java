@@ -7,9 +7,9 @@ import static org.mockito.Mockito.*;
 
 class GameConfigurationTest {
 
-  Validator validatorMock = mock(PlayerTypeValidator.class);
-  PlayerFactory playerFactory = mock(PlayerFactory.class);
-  HumanUserInterface userInterfaceMock = mock(HumanUserInterface.class);
+
+  PlayerFactory playerFactory = mock(PlayerFactoryImplementation.class);
+  HumanUserInterface userInterfaceMock = mock(HumanUserInterface.class, RETURNS_MOCKS);
   private GameConfiguration gameConfig;
 
   @BeforeEach
@@ -18,10 +18,9 @@ class GameConfigurationTest {
   }
 
   @Test
-  public void testChooseOpponent() {
-    when(userInterfaceMock.userPrompt("\nChoose an opponent:\n(1) Human\n(2) Easy Computer Player\n(3) Hard Computer Player\n(4) Impossible Computer Player\n", validatorMock)).thenReturn("1");
-    when(validatorMock.isValidInput("1")).thenReturn(true);
-    gameConfig.chooseOpponent("1");
-    verify(playerFactory, times(1)).makePlayer("1", "O");
+
+  public void testGameMenu() {
+   gameConfig.gameMenu();
+   verify(playerFactory, times(2)).makePlayer(anyString(), anyString());
   }
 }

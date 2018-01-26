@@ -2,13 +2,14 @@ package me.karakelley.tictactoe;
 
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 import java.io.FileReader;
 import java.io.IOException;
 
 public class GameConfiguration {
+  private String gameType;
   private final String HUMAN_PLAYER_SELECTION = "1";
-  private final String opponentType = "\nChoose an opponent:\n(1) Human\n(2) Easy Computer Player\n(3) Hard Computer Player\n(4) Impossible Computer Player\n";
+  private final String EASY_PLAYER_SELECTION = "2";
+  private final String OPPONENT_TYPE = "\nChoose an opponent:\n(1) Human\n(2) Easy Computer Player\n(3) Hard Computer Player\n(4) Impossible Computer Player\n";
   private String player1marker = "X";
   private String player2marker = "O";
   private String path;
@@ -31,6 +32,7 @@ public class GameConfiguration {
     userInterface.waitForKeyPress();
 
     setUpPlayers();
+    configureUIMessages();
   }
 
   public Player getPlayer2() {
@@ -41,13 +43,20 @@ public class GameConfiguration {
     return player1;
   }
 
-  public void chooseOpponent(String choice) {
-    if (!choice.equals(HUMAN_PLAYER_SELECTION)) System.exit(0);
-    player2 = playerFactory.makePlayer(HUMAN_PLAYER_SELECTION, getPlayer2marker());
+  private void configureUIMessages() {
+    if (gameType.equals(EASY_PLAYER_SELECTION)) {
+      userInterface.setWinMessage("You win!\n");
+      userInterface.setLoseMessage("You lose!\n");
+    }
+  }
+
+  private void chooseGameType() {
+    gameType = userInterface.userPrompt(OPPONENT_TYPE, new PlayerTypeValidator());
+    player2 = playerFactory.makePlayer(gameType, getPlayer2marker());
   }
 
   private void setUpPlayers() {
-    chooseOpponent(userInterface.userPrompt(opponentType, new PlayerTypeValidator()));
+    chooseGameType();
     player1 = playerFactory.makePlayer(HUMAN_PLAYER_SELECTION, getPlayer1marker());
   }
 
@@ -88,3 +97,4 @@ public class GameConfiguration {
     return parser != null;
   }
 }
+
