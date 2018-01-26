@@ -13,22 +13,22 @@ public class GameConfiguration {
   private String player2marker = "O";
   private String path;
   private Parser parser;
-  private UserInterface UI;
+  private UserInterface userInterface;
   private PlayerFactory playerFactory;
   private Player player1;
   private Player player2;
 
-  public GameConfiguration(String path, UserInterface UI, PlayerFactory playerFactory) {
+  public GameConfiguration(String path, UserInterface userInterface, PlayerFactory playerFactory) {
     this.path = path;
-    this.UI = UI;
+    this.userInterface = userInterface;
     this.parser = setupParser();
     this.playerFactory = playerFactory;
   }
 
   public void gameMenu() {
-    UI.greetUser();
-    UI.displayMessage("Press ANY key to continue\n");
-    UI.waitForKeyPress();
+    userInterface.greetUser();
+    userInterface.displayMessage("Press ANY key to continue\n");
+    userInterface.waitForKeyPress();
 
     setUpPlayers();
   }
@@ -47,7 +47,7 @@ public class GameConfiguration {
   }
 
   private void setUpPlayers() {
-    chooseOpponent(UI.userPrompt(opponentType, new PlayerTypeValidator()));
+    chooseOpponent(userInterface.userPrompt(opponentType, new PlayerTypeValidator()));
     player1 = playerFactory.makePlayer(HUMAN_PLAYER_SELECTION, getPlayer1marker());
   }
 
