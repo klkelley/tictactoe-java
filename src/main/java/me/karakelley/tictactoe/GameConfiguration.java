@@ -8,7 +8,6 @@ import java.io.IOException;
 public class GameConfiguration {
   private String gameType;
   private final String HUMAN_PLAYER_SELECTION = "1";
-  private final String EASY_PLAYER_SELECTION = "2";
   private final String OPPONENT_TYPE = "\nChoose an opponent:\n(1) Human\n(2) Easy Computer Player\n(3) Hard Computer Player\n(4) Impossible Computer Player\n";
   private String player1marker = "X";
   private String player2marker = "O";
@@ -32,7 +31,6 @@ public class GameConfiguration {
     userInterface.waitForKeyPress();
 
     setUpPlayers();
-    configureUIMessages();
   }
 
   public Player getPlayer2() {
@@ -43,21 +41,14 @@ public class GameConfiguration {
     return player1;
   }
 
-  private void configureUIMessages() {
-    if (gameType.equals(EASY_PLAYER_SELECTION)) {
-      userInterface.setWinMessage("You win!\n");
-      userInterface.setLoseMessage("You lose!\n");
-    }
-  }
-
   private void chooseGameType() {
     gameType = userInterface.userPrompt(OPPONENT_TYPE, new PlayerTypeValidator());
-    player2 = playerFactory.makePlayer(gameType, getPlayer2marker());
+    player2 = playerFactory.makePlayer(gameType, getPlayer2marker(), getPlayer1marker());
   }
 
   private void setUpPlayers() {
     chooseGameType();
-    player1 = playerFactory.makePlayer(HUMAN_PLAYER_SELECTION, getPlayer1marker());
+    player1 = playerFactory.makePlayer(HUMAN_PLAYER_SELECTION, getPlayer1marker(), getPlayer2marker());
   }
 
   private String getPlayer1marker() {

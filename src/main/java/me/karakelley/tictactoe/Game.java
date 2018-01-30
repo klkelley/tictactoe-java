@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Game {
+  public String winningPlayer;
 
   public boolean gameOver(BoardState boardState) {
     return tie(boardState) || winner(boardState);
@@ -15,17 +16,29 @@ public class Game {
     return boardState.fullBoard() && !winner(boardState);
   }
 
+
   private boolean winner(BoardState boardState) {
     boolean winner = false;
-    String pattern = "[A-Z]";
     String[][] combos = boardState.winningCombinations();
     for (String[] combo : combos) {
-      List<String> section = removeDuplicates(combo);
-      if (section.size() == 1 && section.get(0).matches(pattern)) {
+      if (uniqueMarker(combo) && isMarker(combo)) {
         winner = true;
+        winningPlayer = getUniqueMarker(combo);
       }
     }
     return winner;
+  }
+
+  private String getUniqueMarker(String[] section) {
+    return section[0];
+  }
+
+  private boolean uniqueMarker(String[] section) {
+    return removeDuplicates(section).size() == 1;
+  }
+
+  private boolean isMarker(String[] section) {
+    return removeDuplicates(section).get(0).matches("[A-Z]");
   }
 
   private List<String> removeDuplicates(String[] combinations){
@@ -34,5 +47,9 @@ public class Game {
             stream().
             distinct().
             collect(Collectors.toList());
+  }
+
+  public String winningPlayer() {
+    return winningPlayer;
   }
 }
