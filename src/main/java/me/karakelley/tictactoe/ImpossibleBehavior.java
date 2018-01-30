@@ -32,7 +32,7 @@ public class ImpossibleBehavior implements AIBehavior {
   }
 
   private void resetSpace(BoardState boardState, String space) {
-    boardState.placeMove(space, "-");
+    boardState.placeMove(space, space.toString());
   }
 
   private void placeMove(BoardState boardState, String space) {

@@ -36,6 +36,7 @@ class ImpossibleBehaviorTest {
   }
 
   @Test
+
   public void test_impossible_computer_wins_when_human_picks_cells_zero_and_two() {
     boardState.placeMove("0", OPPONENT_MARKER);
     boardState.placeMove("4", COMPUTER_MARKER);
