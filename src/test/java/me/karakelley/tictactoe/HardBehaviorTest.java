@@ -1,5 +1,9 @@
 package me.karakelley.tictactoe;
 
+import me.karakelley.tictactoe.game.BoardState;
+import me.karakelley.tictactoe.players.ArtificialIntelligenceBehaviors.HardBehavior;
+import me.karakelley.tictactoe.players.ComputerPlayer;
+import me.karakelley.tictactoe.players.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
