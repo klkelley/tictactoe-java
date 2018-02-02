@@ -13,6 +13,7 @@ public class GameLoop {
   private Player player2;
   private Player[] players;
   private BoardState boardState;
+  private final String PLAY_AGAIN = "Do you want to play again (Y / N)?\n";
 
   public GameLoop(UserInterface userInterface, Player player1, Player player2, BoardState boardState) {
     this.userInterface = userInterface;
@@ -74,7 +75,7 @@ public class GameLoop {
   }
 
   private boolean playAgain() {
-    String answer = userInterface.userPrompt("Do you want to play again (Y / N)?\n", new PlayAgainValidator());
+    String answer = userInterface.userPrompt(PLAY_AGAIN, new PlayAgainValidator());
     if (answer.toLowerCase().equals("y")) {
       boardState.resetBoard();
       return true;
