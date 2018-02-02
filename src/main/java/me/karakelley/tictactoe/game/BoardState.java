@@ -32,6 +32,10 @@ public class BoardState {
     return full;
   }
 
+  public String[] resetBoard() {
+    return grid = initialState();
+  }
+
   public boolean cellAvailable(int cell) {
     return cellInBounds(cell) && cellBlank(cell);
   }

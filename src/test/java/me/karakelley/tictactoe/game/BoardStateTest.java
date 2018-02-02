@@ -84,4 +84,10 @@ class BoardStateTest {
     List<Integer> expectedOutput = new ArrayList<>(Arrays.asList(1, 2, 4, 5, 6, 7, 8));
     assertEquals(expectedOutput, boardState.availableCells());
   }
+
+  @Test
+  public void testResetBoard() {
+    String[] expectedOutput = new String[] {"-","-", "-", "-", "-", "-", "-", "-", "-"};
+    assertArrayEquals(expectedOutput, boardState.resetBoard());
+  }
 }
