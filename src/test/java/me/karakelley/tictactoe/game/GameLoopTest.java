@@ -11,15 +11,16 @@ import static org.mockito.Mockito.*;
 class GameLoopTest {
   private GameLoop gameLoop;
 
-  HumanUserInterface humanUserInterfaceMock = mock(HumanUserInterface.class);
+  HumanUserInterface humanUserInterfaceMock = mock(HumanUserInterface.class, RETURNS_MOCKS);
   HumanPlayer humanPlayerMock = mock(HumanPlayer.class);
   BoardState boardStateMock = mock(BoardState.class);
   EnterValidator enterValidatorMock = mock(EnterValidator.class);
-  Game gameMock = mock(Game.class);
+  Validator playAgainMock = mock(PlayAgainValidator.class);
+  Game gameMock = mock(Game.class, RETURNS_DEEP_STUBS);
 
   @BeforeEach
   public void setUp() {
-    gameLoop = new GameLoop(humanUserInterfaceMock, humanPlayerMock, humanPlayerMock);
+    gameLoop = new GameLoop(humanUserInterfaceMock, humanPlayerMock, humanPlayerMock, boardStateMock);
   }
 
   @Test
@@ -27,7 +28,8 @@ class GameLoopTest {
     when(humanUserInterfaceMock.userPrompt("Please enter an available cell:\n", enterValidatorMock)).thenReturn("1");
     when(boardStateMock.placeMove("1", "x")).thenReturn(new String[]{"1"});
     when(gameMock.gameOver(boardStateMock)).thenReturn(true);
-    gameLoop.start(boardStateMock, gameMock);
+    when(humanUserInterfaceMock.userPrompt("Do you want to play again (Y / N)?\n", playAgainMock)).thenReturn("n");
+    gameLoop.start(gameMock);
     verify(humanUserInterfaceMock, times(1)).displayBoard(boardStateMock);
   }
 

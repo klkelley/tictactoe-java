@@ -18,7 +18,7 @@ public class Main {
     GameConfiguration gameConfiguration = new GameConfiguration(System.getProperty("configuration"), humanUserInterface, new PlayerFactoryImplementation(humanUserInterface, game));
 
     gameConfiguration.gameMenu();
-    GameLoop gameLoop = new GameLoop(humanUserInterface, gameConfiguration.getPlayer1(), gameConfiguration.getPlayer2());
-    gameLoop.start(boardState, game);
+    GameLoop gameLoop = new GameLoop(humanUserInterface, gameConfiguration.getPlayer1(), gameConfiguration.getPlayer2(), boardState);
+    gameLoop.start(game);
   }
 }
