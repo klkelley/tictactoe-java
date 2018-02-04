@@ -26,13 +26,13 @@ public class GameConfiguration {
     this.playerFactory = playerFactory;
   }
 
-  public void gameMenu() {
+  public void gameMenu(UserInterfaceConfiguration userInterfaceConfig) {
     userInterface.greetUser();
     userInterface.displayMessage("Press ANY key to continue\n");
     userInterface.waitForKeyPress();
 
     setUpPlayers();
-    configureUIMessages();
+    configureUIMessages(userInterfaceConfig);
   }
 
   public Player getPlayer2() {
@@ -43,11 +43,8 @@ public class GameConfiguration {
     return player1;
   }
 
-  private void configureUIMessages() {
-    if (gameType.equals(EASY_PLAYER_SELECTION)) {
-      userInterface.setWinMessage("You win!\n");
-      userInterface.setLoseMessage("You lose!\n");
-    }
+  private void configureUIMessages(UserInterfaceConfiguration userInterfaceConfig) {
+    userInterfaceConfig.setGameMessages(gameType, userInterface);
   }
 
   private void chooseGameType() {

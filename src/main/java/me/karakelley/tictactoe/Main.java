@@ -11,7 +11,7 @@ public class Main {
     UserInterface humanUserInterface = new HumanUserInterface(io, boardPresenter);
     GameConfiguration gameConfiguration = new GameConfiguration(System.getProperty("configuration"), humanUserInterface, new PlayerFactoryImplementation(humanUserInterface));
 
-    gameConfiguration.gameMenu();
+    gameConfiguration.gameMenu(new UserInterfaceConfiguration());
     GameLoop gameLoop = new GameLoop(humanUserInterface, gameConfiguration.getPlayer1(), gameConfiguration.getPlayer2());
     gameLoop.start(boardState, game);
   }
