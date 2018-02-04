@@ -1,5 +1,11 @@
 package me.karakelley.tictactoe;
 
+import me.karakelley.tictactoe.UI.UserInterface;
+import me.karakelley.tictactoe.UI.validators.Validator;
+import me.karakelley.tictactoe.game.BoardState;
+import me.karakelley.tictactoe.game.Game;
+import me.karakelley.tictactoe.game.GameLoop;
+
 public class Application {
 
   private GameLoop gameLoop;
