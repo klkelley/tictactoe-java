@@ -8,9 +8,10 @@ import static org.mockito.Mockito.*;
 class GameConfigurationTest {
 
 
-  PlayerFactory playerFactory = mock(PlayerFactoryImplementation.class);
-  HumanUserInterface userInterfaceMock = mock(HumanUserInterface.class, RETURNS_MOCKS);
+  private PlayerFactory playerFactory = mock(PlayerFactoryImplementation.class);
+  private HumanUserInterface userInterfaceMock = mock(HumanUserInterface.class, RETURNS_MOCKS);
   private GameConfiguration gameConfig;
+  private UserInterfaceConfiguration userInterfaceConfig = new UserInterfaceConfiguration();
 
   @BeforeEach
   public void setUp() {
@@ -20,7 +21,7 @@ class GameConfigurationTest {
   @Test
 
   public void testGameMenu() {
-   gameConfig.gameMenu();
+   gameConfig.gameMenu(userInterfaceConfig);
    verify(playerFactory, times(2)).makePlayer(anyString(), anyString());
   }
 }
