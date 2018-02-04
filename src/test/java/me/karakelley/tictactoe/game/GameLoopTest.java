@@ -20,7 +20,7 @@ class GameLoopTest {
 
   @BeforeEach
   public void setUp() {
-    gameLoop = new GameLoop(humanUserInterfaceMock, humanPlayerMock, humanPlayerMock, boardStateMock);
+    gameLoop = new GameLoop(humanUserInterfaceMock, humanPlayerMock, humanPlayerMock);
   }
 
   @Test
@@ -29,7 +29,7 @@ class GameLoopTest {
     when(boardStateMock.placeMove("1", "x")).thenReturn(new String[]{"1"});
     when(gameMock.gameOver(boardStateMock)).thenReturn(true);
     when(humanUserInterfaceMock.userPrompt("Do you want to play again (Y / N)?\n", playAgainMock)).thenReturn("n");
-    gameLoop.start(gameMock);
+    gameLoop.start(gameMock, boardStateMock);
     verify(humanUserInterfaceMock, times(1)).displayBoard(boardStateMock);
   }
 

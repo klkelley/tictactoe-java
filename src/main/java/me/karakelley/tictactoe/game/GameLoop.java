@@ -12,25 +12,20 @@ public class GameLoop {
   private Player player1;
   private Player player2;
   private Player[] players;
-  private BoardState boardState;
-  private final String PLAY_AGAIN = "Do you want to play again (Y / N)?\n";
 
-  public GameLoop(UserInterface userInterface, Player player1, Player player2, BoardState boardState) {
+  public GameLoop(UserInterface userInterface, Player player1, Player player2) {
     this.userInterface = userInterface;
     this.player1 = player1;
     this.player2 = player2;
     this.players = new Player[]{player1, player2};
-    this.boardState = boardState;
   }
 
-  public void start(Game game) {
-    do {
-      showBoard(boardState);
-      play(game);
-    } while (playAgain());
+  public void start(Game game, BoardState boardState) {
+    showBoard(boardState);
+    play(game, boardState);
   }
 
-  private void play(Game game) {
+  private void play(Game game, BoardState boardState) {
     while (!game.gameOver(boardState)) {
       nextPlayersTurn(boardState);
     }
@@ -74,12 +69,7 @@ public class GameLoop {
     return lastPlayer() == player1;
   }
 
-  private boolean playAgain() {
-    String answer = userInterface.userPrompt(PLAY_AGAIN, new PlayAgainValidator());
-    if (answer.toLowerCase().equals("y")) {
-      boardState.resetBoard();
-      return true;
-    }
-    return false;
+  public void reset(BoardState boardState) {
+    boardState.resetBoard();
   }
 }
