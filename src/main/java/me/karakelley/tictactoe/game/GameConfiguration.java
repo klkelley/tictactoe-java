@@ -23,7 +23,7 @@ public class GameConfiguration {
   private Player player1;
   private Player player2;
 
-  public GameConfiguration(String path, UserInterface userInterface, PlayerFactory playerFactory) {
+  public GameConfiguration(String path, UserInterface userInterface, PlayerFactory playerFactory){
     this.path = path;
     this.userInterface = userInterface;
     this.parser = setupParser();
