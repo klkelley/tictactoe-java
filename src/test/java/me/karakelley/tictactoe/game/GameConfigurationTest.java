@@ -13,12 +13,11 @@ class GameConfigurationTest {
 
   PlayerFactory playerFactory = mock(PlayerFactoryImplementation.class);
   HumanUserInterface userInterfaceMock = mock(HumanUserInterface.class, RETURNS_MOCKS);
-  UserInterfaceConfiguration userInterfaceConfig = mock(UserInterfaceConfiguration.class);
   private GameConfiguration gameConfig;
 
   @BeforeEach
   public void setUp() {
-    gameConfig = new GameConfiguration(System.getProperty("configuration"), userInterfaceMock, playerFactory, userInterfaceConfig);
+    gameConfig = new GameConfiguration(System.getProperty("configuration"), userInterfaceMock, playerFactory);
   }
 
   @Test
