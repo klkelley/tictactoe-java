@@ -1,6 +1,5 @@
 package me.karakelley.tictactoe;
 
-import java.io.IOException;
 
 public class HumanUserInterface implements UserInterface {
   private IO io;
@@ -25,14 +24,6 @@ public class HumanUserInterface implements UserInterface {
 
     } while(!validator.isValidInput(input));
       return input;
-  }
-
-  public void waitForKeyPress() {
-    try {
-      io.anyKey();
-    } catch (IOException|InterruptedException e) {
-      throw new RuntimeException(e);
-    }
   }
 
   public void setWinMessage(String message) {

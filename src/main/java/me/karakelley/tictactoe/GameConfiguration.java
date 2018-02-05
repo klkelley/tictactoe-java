@@ -27,9 +27,6 @@ public class GameConfiguration {
 
   public void gameMenu() {
     userInterface.greetUser();
-    userInterface.displayMessage("Press ANY key to continue\n");
-    userInterface.waitForKeyPress();
-
     setUpPlayers();
   }
 

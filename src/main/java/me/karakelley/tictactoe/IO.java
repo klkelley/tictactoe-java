@@ -22,24 +22,5 @@ public class IO {
     return inputScanner.nextLine();
   }
 
-  public int anyKey() throws IOException, InterruptedException {
-    int input = -1;
-    enterCharacterMode();
-    while (input < 0 ) {
-      input = in.read();
-    }
-    enterLineMode();
-    return input;
-  }
-
-  private void enterCharacterMode() throws IOException, InterruptedException {
-    String[] cmd = new String[]{"/bin/sh", "-c", "stty raw </dev/tty"};
-    Runtime.getRuntime().exec(cmd).waitFor();
-  }
-
-  private void enterLineMode() throws IOException, InterruptedException {
-    String[] cmd = {"/bin/sh", "-c", "stty cooked </dev/tty"};
-    Runtime.getRuntime().exec(cmd).waitFor();
-  }
 }
 

@@ -44,13 +44,6 @@ class HumanUserInterfaceTest {
   }
 
   @Test
-  public void testWaitForKeyPress() throws IOException, InterruptedException {
-    when(ioMock.anyKey()).thenReturn(88);
-    humanUserInterface.waitForKeyPress();
-    verify(ioMock, times(1)).anyKey();
-  }
-
-  @Test
   public void testDisplayTie() {
     doNothing().when(ioMock).display("It's a tie!\n");
     humanUserInterface.displayTie();
