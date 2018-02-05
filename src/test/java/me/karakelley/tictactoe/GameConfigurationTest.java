@@ -21,6 +21,6 @@ class GameConfigurationTest {
 
   public void testGameMenu() {
    gameConfig.gameMenu();
-   verify(playerFactory, times(2)).makePlayer(anyString(), anyString());
+   verify(playerFactory, times(2)).makePlayer(anyString(), anyString(), anyString());
   }
 }
