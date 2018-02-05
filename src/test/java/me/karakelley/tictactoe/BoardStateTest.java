@@ -19,13 +19,13 @@ class BoardStateTest {
 
   @Test
   public void getGrid() {
-    String[] expectedOutput = new String[] {"-","-", "-", "-", "-", "-", "-", "-", "-"};
+    String[] expectedOutput = new String[] {"0","1", "2", "3", "4", "5", "6", "7", "8"};
     assertArrayEquals(expectedOutput, boardState.getGrid());
   }
 
   @Test
   public void testPlaceMove() {
-    String[] expectedOutput = new String[] {"X","-", "-", "-", "-", "-", "-", "-", "-"};
+    String[] expectedOutput = new String[] {"X","1", "2", "3", "4", "5", "6", "7", "8"};
     assertArrayEquals(expectedOutput, boardState.placeMove("0", "X"));
   }
 
@@ -45,6 +45,7 @@ class BoardStateTest {
 
   @Test
   public void testCellIsAvailable() {
+    System.out.println(boardState.getGrid()[0]);
     assertEquals(true, boardState.cellAvailable(0));
   }
 
@@ -56,13 +57,13 @@ class BoardStateTest {
   @Test
   public void testCombinations() {
     String[][] expectedOutput = new String[][]{ {"X","X", "X"},
-                                                { "-", "-", "-"},
-                                                { "-", "-", "-"},
-                                                { "X", "-", "-"},
-                                                { "X", "-", "-"},
-                                                { "X", "-", "-"},
-                                                { "X", "-", "-"},
-                                                { "X", "-", "-"}};
+                                                { "3", "4", "5"},
+                                                { "6", "7", "8"},
+                                                { "X", "3", "6"},
+                                                { "X", "4", "7"},
+                                                { "X", "5", "8"},
+                                                { "X", "4", "8"},
+                                                { "X", "4", "6"}};
 
     boardState.placeMove("0", "X");
     boardState.placeMove("1", "X");

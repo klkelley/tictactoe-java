@@ -45,25 +45,8 @@ public class BoardState {
     return combinations;
   }
 
-  private String[] initialState() {
-    String[] initialState = new String[gridLength()];
-    for (int i = 0; i < gridLength(); i++) {
-      initialState[i] = "-";
-    }
-    return initialState;
-  }
-
-  private boolean cellInBounds(int cell) {
-    return cell >= 0 && cell < gridLength();
-  }
-
-  private boolean cellBlank(int cell) {
-    return grid[cell].equals("-");
-  }
-
-  private int gridLength() {
-    Double gridLength = Math.pow(boardSize, 2);
-    return gridLength.intValue();
+  public boolean cellBlank(int cell) {
+    return grid[cell].matches( "[0-9]+");
   }
 
   private String[][] rows() {
@@ -89,6 +72,20 @@ public class BoardState {
     return columns;
   }
 
+  private String[][] diagonals() {
+    String[][] diagonals = new String[boardSize-1][boardSize];
+    diagonals[0] = leftDiagonal();
+    diagonals[1] = rightDiagonal();
+    return diagonals;
+  }
+
+  public List<Integer> availableCells() {
+    return IntStream.range(0, grid.length)
+            .filter(this::cellBlank)
+            .boxed()
+            .collect(Collectors.toList());
+  }
+
   private String[] leftDiagonal() {
     String[] leftDiagonal = new String[boardSize];
     String[][] rows = rows();
@@ -108,17 +105,21 @@ public class BoardState {
     return rightDiagonal;
   }
 
-  private String[][] diagonals() {
-    String[][] diagonals = new String[boardSize-1][boardSize];
-    diagonals[0] = leftDiagonal();
-    diagonals[1] = rightDiagonal();
-    return diagonals;
+  private int gridLength() {
+    Double gridLength = Math.pow(boardSize, 2);
+    return gridLength.intValue();
   }
 
-  public List<Integer> availableCells() {
-    return IntStream.range(0, grid.length)
-            .filter(this::cellBlank)
-            .boxed()
-            .collect(Collectors.toList());
+  private String[] initialState() {
+    String[] initialState = new String[gridLength()];
+    for (int i = 0; i < gridLength(); i++) {
+      initialState[i] = String.valueOf(i);
+    }
+    return initialState;
   }
+
+  private boolean cellInBounds(int cell) {
+    return cell >= 0 && cell < gridLength();
+  }
+
 }
