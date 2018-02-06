@@ -1,14 +1,15 @@
 package me.karakelley.tictactoe;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-class HumanUserInterfaceTest {
+public class HumanUserInterfaceTest {
   private HumanUserInterface humanUserInterface;
 
   IO ioMock = mock(IO.class);
@@ -16,7 +17,7 @@ class HumanUserInterfaceTest {
   NumberValidator numberValidatorMock = mock(NumberValidator.class);
   BoardState boardStateMock = mock(BoardState.class);
 
-  @BeforeEach
+  @Before
   public void setUp() {
     humanUserInterface = new HumanUserInterface(ioMock, boardPresenterMock);
   }

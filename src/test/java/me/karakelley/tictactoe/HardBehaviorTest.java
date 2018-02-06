@@ -1,14 +1,16 @@
 package me.karakelley.tictactoe;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-class HardBehaviorTest {
+import org.junit.Before;
+import org.junit.Test;
+
+import static junit.framework.TestCase.assertTrue;
+
+public class HardBehaviorTest {
   private BoardState boardState = new BoardState();
   private Player player;
 
-  @BeforeEach
+  @Before
   public void setUp() {
     player = new ComputerPlayer("O", new HardBehavior("X"));
   }

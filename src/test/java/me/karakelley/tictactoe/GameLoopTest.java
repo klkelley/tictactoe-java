@@ -1,11 +1,12 @@
 package me.karakelley.tictactoe;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import static org.mockito.Mockito.*;
 
-class GameLoopTest {
+public class GameLoopTest {
   private GameLoop gameLoop;
 
   HumanUserInterface humanUserInterfaceMock = mock(HumanUserInterface.class);
@@ -14,7 +15,8 @@ class GameLoopTest {
   EnterValidator enterValidatorMock = mock(EnterValidator.class);
   Game gameMock = mock(Game.class);
 
-  @BeforeEach
+  @Before
+
   public void setUp() {
     gameLoop = new GameLoop(humanUserInterfaceMock, humanPlayerMock, humanPlayerMock);
   }

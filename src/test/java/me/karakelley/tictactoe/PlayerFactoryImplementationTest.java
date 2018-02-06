@@ -1,11 +1,11 @@
 package me.karakelley.tictactoe;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
-class PlayerFactoryImplementationTest {
+public class PlayerFactoryImplementationTest {
 
   UserInterface UImock = mock(HumanUserInterface.class);
   Game gameMock = mock(Game.class);

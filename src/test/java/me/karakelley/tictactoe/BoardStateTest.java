@@ -1,18 +1,21 @@
 package me.karakelley.tictactoe;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
-class BoardStateTest {
+
+public class BoardStateTest {
   BoardState boardState;
 
-  @BeforeEach
+  @Before
   public void setUp() {
     boardState = new BoardState();
   }
@@ -45,11 +48,11 @@ class BoardStateTest {
 
   @Test
   public void testCellIsAvailable() {
-    System.out.println(boardState.getGrid()[0]);
     assertEquals(true, boardState.cellAvailable(0));
   }
 
-  @Test void testCellIsNotAvailable() {
+  @Test
+  public void testCellIsNotAvailable() {
     boardState.placeMove("0", "X");
     assertEquals(false, boardState.cellAvailable(0));
   }
