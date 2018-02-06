@@ -40,11 +40,4 @@ public class IOTest {
     System.setOut(originalOut);
   }
 
-  @Test
-  public void testAnyKey() throws IOException, InterruptedException {
-    ByteArrayInputStream input = new ByteArrayInputStream("T".getBytes());
-    IO getIO = new IO(stdout, input);
-
-    assertEquals('T',     getIO.anyKey());
-  }
 }
