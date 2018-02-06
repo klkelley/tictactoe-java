@@ -1,6 +1,8 @@
 package me.karakelley.tictactoe;
 
+import org.junit.Rule;
 import org.junit.jupiter.api.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -22,6 +24,13 @@ class NumberValidatorTest {
     when(boardState.cellAvailable(4)).thenReturn(true);
 
     assertEquals(true, validator.isValidInput("4"));
+  }
+
+  @Test
+  public void testInputIsInvalidForCharacters() {
+    Validator validator = new NumberValidator(boardState);
+
+    assertEquals(false, validator.isValidInput("f"));
   }
 
 }

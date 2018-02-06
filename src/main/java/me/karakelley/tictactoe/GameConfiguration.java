@@ -48,12 +48,12 @@ public class GameConfiguration {
     player1 = playerFactory.makePlayer(HUMAN_PLAYER_SELECTION, getPlayer1marker(), getPlayer2marker());
   }
 
-  private String getPlayer1marker() {
+  public String getPlayer1marker() {
     setPlayer1Marker("markers", "playerOne");
     return player1marker;
   }
 
-  private String getPlayer2marker() {
+  public String getPlayer2marker() {
     setPlayer2Marker("markers", "playerTwo");
     return player2marker;
   }

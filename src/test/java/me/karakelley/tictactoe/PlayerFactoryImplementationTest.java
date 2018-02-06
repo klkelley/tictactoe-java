@@ -17,8 +17,20 @@ class PlayerFactoryImplementationTest {
   }
 
   @Test
-  public void testMakeComputerPlayer() {
+  public void testMakeEasyComputerPlayer() {
     Player player = new PlayerFactoryImplementation(UImock, gameMock).makePlayer("2", "X", "O");
+    assertTrue(player instanceof ComputerPlayer);
+  }
+
+  @Test
+  public void testMakeHardComputerPlayer() {
+    Player player = new PlayerFactoryImplementation(UImock, gameMock).makePlayer("3", "X", "O");
+    assertTrue(player instanceof ComputerPlayer);
+  }
+
+  @Test
+  public void testMakeImpossibleComputerPlayer() {
+    Player player = new PlayerFactoryImplementation(UImock, gameMock).makePlayer("4", "X", "O");
     assertTrue(player instanceof ComputerPlayer);
   }
 
