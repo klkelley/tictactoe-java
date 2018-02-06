@@ -90,4 +90,11 @@ class HardBehaviorTest {
     int cell = Integer.parseInt(player.pickMove(boardState));
     assertTrue(cell == 2 || cell == 0);
   }
+
+  @Test
+  public void test_computer_picks_at_random_when_no_block_needed() {
+    boardState.placeMove("0", "X");
+    int cell = Integer.parseInt(player.pickMove(boardState));
+    assertTrue(cell > 0);
+  }
 }
