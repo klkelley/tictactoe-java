@@ -40,4 +40,13 @@ public class IOTest {
     System.setOut(originalOut);
   }
 
+  @Test
+  public void testClearScreen() {
+    PrintStream originalOut = System.out;
+    System.setOut(stdout);
+    IO.clearScreen();
+
+    assertEquals("\033[H\033[2J", outContent.toString());
+    System.setOut(originalOut);
+  }
 }
