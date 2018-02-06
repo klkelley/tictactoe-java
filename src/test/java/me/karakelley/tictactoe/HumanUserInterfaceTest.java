@@ -3,7 +3,10 @@ package me.karakelley.tictactoe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -11,10 +14,15 @@ import static org.mockito.Mockito.*;
 class HumanUserInterfaceTest {
   private HumanUserInterface humanUserInterface;
 
+  private ByteArrayOutputStream outContent;
+  private PrintStream stdout;
+  private InputStream stdin;
+  private IO IO;
   IO ioMock = mock(IO.class);
   BoardPresenter boardPresenterMock = mock(BoardPresenter.class);
   NumberValidator numberValidatorMock = mock(NumberValidator.class);
   BoardState boardStateMock = mock(BoardState.class);
+
 
   @BeforeEach
   public void setUp() {
@@ -69,6 +77,38 @@ class HumanUserInterfaceTest {
     doNothing().when(ioMock).display("Player two wins!\n");
     humanUserInterface.displayWinner(false);
     verify(ioMock, times(1)).display("Player two wins!\n");
+  }
+
+  @Test
+  public void testSetLoseMessage() {
+    humanUserInterface.setLoseMessage("You Lose!\n");
+    humanUserInterface.displayWinner(false);
+    doNothing().when(ioMock).display("You Lose!\n");
+    verify(ioMock, times(1)).display("You Lose!\n");
+  }
+
+  @Test
+  public void testSetWinMessage() {
+    humanUserInterface.setWinMessage("You Win!\n");
+    humanUserInterface.displayWinner(true);
+    doNothing().when(ioMock).display("You Win!\n");
+    verify(ioMock, times(1)).display("You Win!\n");
+  }
+
+  @Test
+  public void testClearScreen() {
+    outContent = new ByteArrayOutputStream();
+    stdout = new PrintStream(outContent);
+    stdin = System.in;
+    IO = new IO(stdout, stdin);
+    PrintStream originalOut = System.out;
+    System.setOut(stdout);
+
+    UserInterface userInterface = new HumanUserInterface(IO, boardPresenterMock);
+    userInterface.clearScreen();
+
+    assertEquals("\033[H\033[2J", outContent.toString());
+    System.setOut(originalOut);
   }
 
 }
