@@ -1,17 +1,18 @@
 package me.karakelley.tictactoe;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Before;
+import org.junit.Test;
+
+import static junit.framework.TestCase.assertTrue;
 import static org.mockito.Mockito.spy;
 
-class EasyBehaviorTest {
+public class EasyBehaviorTest {
 
   BoardState boardState = spy(new BoardState());
   Player player;
 
-  @BeforeEach
+  @Before
   public void setUp() {
     player = new ComputerPlayer("X", new EasyBehavior());
   }

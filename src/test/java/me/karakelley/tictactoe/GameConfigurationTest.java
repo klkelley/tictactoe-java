@@ -1,18 +1,19 @@
 package me.karakelley.tictactoe;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import static org.mockito.Mockito.*;
 
-class GameConfigurationTest {
+public class GameConfigurationTest {
 
 
   PlayerFactory playerFactory = mock(PlayerFactoryImplementation.class);
   HumanUserInterface userInterfaceMock = mock(HumanUserInterface.class, RETURNS_MOCKS);
   private GameConfiguration gameConfig;
 
-  @BeforeEach
+  @Before
   public void setUp() {
     gameConfig = new GameConfiguration(System.getProperty("configuration"), userInterfaceMock, playerFactory);
   }

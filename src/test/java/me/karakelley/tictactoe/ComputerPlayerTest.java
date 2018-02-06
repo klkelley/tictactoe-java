@@ -1,10 +1,11 @@
 package me.karakelley.tictactoe;
 
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
-class ComputerPlayerTest {
+import static org.junit.Assert.assertEquals;
+
+public class ComputerPlayerTest {
 
   @Test
   public void testComputerHasMarker() {

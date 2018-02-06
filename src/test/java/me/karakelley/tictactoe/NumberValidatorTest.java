@@ -1,12 +1,13 @@
 package me.karakelley.tictactoe;
 
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class NumberValidatorTest {
+public class NumberValidatorTest {
 
   BoardState boardState = mock(BoardState.class);
   @Test

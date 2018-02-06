@@ -1,14 +1,14 @@
 package me.karakelley.tictactoe;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static junit.framework.Assert.assertEquals;
 
-class BoardPresenterTest {
+public class BoardPresenterTest {
   private BoardPresenter boardPresenter;
 
-  @BeforeEach
+  @Before
   public void setUp() {
     boardPresenter = new BoardPresenter();
   }

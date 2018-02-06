@@ -1,10 +1,11 @@
 package me.karakelley.tictactoe;
 
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
-class EnterValidatorTest {
+import static org.junit.Assert.assertEquals;
+
+public class EnterValidatorTest {
 
   @Test
   public void testInValidInput() {

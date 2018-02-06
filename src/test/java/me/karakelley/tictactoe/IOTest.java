@@ -1,11 +1,13 @@
 package me.karakelley.tictactoe;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
+
 
 public class IOTest {
   private ByteArrayOutputStream outContent;
@@ -13,7 +15,7 @@ public class IOTest {
   private InputStream stdin;
   private IO IO;
 
-  @BeforeEach
+  @Before
   public void setUp() {
     outContent = new ByteArrayOutputStream();
     stdout = new PrintStream(outContent);
