@@ -22,5 +22,9 @@ public class IO {
     return inputScanner.nextLine();
   }
 
+  public void clearScreen() {
+    display("\033[H\033[2J");
+    out.flush();
+  }
 }
 
