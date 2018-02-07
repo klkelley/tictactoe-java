@@ -1,4 +1,4 @@
-package me.karakelley.tictactoe;
+package me.karakelley.tictactoe.UI;
 
 import me.karakelley.tictactoe.UI.validators.PlayAgainValidator;
 import me.karakelley.tictactoe.UI.validators.Validator;

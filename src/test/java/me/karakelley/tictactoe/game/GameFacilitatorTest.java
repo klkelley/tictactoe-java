@@ -1,4 +1,4 @@
-package me.karakelley.tictactoe;
+package me.karakelley.tictactoe.game;
 
 import me.karakelley.tictactoe.UI.HumanUserInterface;
 import me.karakelley.tictactoe.UI.UserInterface;
@@ -6,6 +6,7 @@ import me.karakelley.tictactoe.UI.validators.PlayAgainValidator;
 import me.karakelley.tictactoe.UI.validators.Validator;
 import me.karakelley.tictactoe.game.BoardState;
 import me.karakelley.tictactoe.game.Game;
+import me.karakelley.tictactoe.game.GameFacilitator;
 import me.karakelley.tictactoe.game.GameLoop;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

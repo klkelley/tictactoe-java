@@ -42,7 +42,6 @@ public class GameLoop {
 
   private void nextPlayersTurn(BoardState boardState) {
     Player player = currentPlayer();
-    System.out.println(Arrays.asList(boardState.getGrid()));
     String chosenCell = player.pickMove(boardState);
     boardState.placeMove(chosenCell, currentPlayer().getMarker());
     takeTurn();
