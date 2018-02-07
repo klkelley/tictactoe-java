@@ -22,11 +22,8 @@ public class PlayerFactoryImplementation implements PlayerFactory{
       newPlayer = new HumanPlayer(currentPlayerMarker, userInterface);
     } else if (type.equals(EASY_COMPUTER) || type.equals(HARD_COMPUTER)) {
       newPlayer = new ComputerPlayer(currentPlayerMarker, new EasyBehavior());
-      userInterface.setWinMessage("You win!\n");
-      userInterface.setLoseMessage("You lose!\n");
     } else if (type.equals(IMPOSSIBLE_COMPUTER)) {
       newPlayer = new ComputerPlayer(currentPlayerMarker, new ImpossibleBehavior(currentPlayerMarker, opponentMarker, game));
-      userInterface.setLoseMessage("You never had a chance!\n");
     }
     return newPlayer;
   }

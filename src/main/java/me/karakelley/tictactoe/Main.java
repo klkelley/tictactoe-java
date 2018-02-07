@@ -8,11 +8,11 @@ public class Main {
     Game game = new Game();
     BoardState boardState = new BoardState();
     BoardPresenter boardPresenter = new BoardPresenter();
-    UserInterface humanUserInterface = new HumanUserInterface(io, boardPresenter);
+    UserInterface humanUserInterface = new HumanUserInterface(io, boardPresenter, "Player one wins!\n", "Player two wins!\n");
     GameConfiguration gameConfiguration = new GameConfiguration(System.getProperty("configuration"), humanUserInterface, new PlayerFactoryImplementation(humanUserInterface, game));
 
-    gameConfiguration.gameMenu();
-    GameLoop gameLoop = new GameLoop(humanUserInterface, gameConfiguration.getPlayer1(), gameConfiguration.getPlayer2());
+    gameConfiguration.gameMenu(new UserInterfaceImplementation(io, boardPresenter));
+    GameLoop gameLoop = new GameLoop(gameConfiguration.getGameInterface(), gameConfiguration.getPlayer1(), gameConfiguration.getPlayer2());
     gameLoop.start(boardState, game);
   }
 }

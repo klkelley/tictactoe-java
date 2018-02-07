@@ -3,6 +3,7 @@ package me.karakelley.tictactoe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 class GameConfigurationTest {
@@ -11,6 +12,7 @@ class GameConfigurationTest {
   PlayerFactory playerFactory = mock(PlayerFactoryImplementation.class);
   HumanUserInterface userInterfaceMock = mock(HumanUserInterface.class, RETURNS_MOCKS);
   private GameConfiguration gameConfig;
+  private UserInterfaceFactory userInterfaceFactory = mock(UserInterfaceImplementation.class, RETURNS_MOCKS);
 
   @BeforeEach
   public void setUp() {
@@ -20,7 +22,14 @@ class GameConfigurationTest {
   @Test
 
   public void testGameMenu() {
-   gameConfig.gameMenu();
+   gameConfig.gameMenu(userInterfaceFactory);
    verify(playerFactory, times(2)).makePlayer(anyString(), anyString(), anyString());
+  }
+
+  @Test
+  public void testReturnsUserInterface() {
+    when(userInterfaceFactory.makeGameInterface("1", userInterfaceMock)).thenCallRealMethod();
+    gameConfig.gameMenu(userInterfaceFactory);
+    assertTrue(gameConfig.getGameInterface() instanceof UserInterface);
   }
 }

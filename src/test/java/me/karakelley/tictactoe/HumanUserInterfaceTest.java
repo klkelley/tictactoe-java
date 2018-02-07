@@ -18,7 +18,7 @@ class HumanUserInterfaceTest {
 
   @BeforeEach
   public void setUp() {
-    humanUserInterface = new HumanUserInterface(ioMock, boardPresenterMock);
+    humanUserInterface = new HumanUserInterface(ioMock, boardPresenterMock, "Player one wins!\n", "Player two wins!\n");
   }
 
   @Test
