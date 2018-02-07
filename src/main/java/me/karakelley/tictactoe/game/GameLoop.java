@@ -17,7 +17,7 @@ public class GameLoop {
     this.userInterface = userInterface;
     this.player1 = player1;
     this.player2 = player2;
-    this.players = new Player[]{player1, player2};
+    this.players = setPlayers(player1, player2);
   }
 
   public void start(Game game, BoardState boardState) {
@@ -42,6 +42,7 @@ public class GameLoop {
 
   private void nextPlayersTurn(BoardState boardState) {
     Player player = currentPlayer();
+    System.out.println(Arrays.asList(boardState.getGrid()));
     String chosenCell = player.pickMove(boardState);
     boardState.placeMove(chosenCell, currentPlayer().getMarker());
     takeTurn();
@@ -79,5 +80,10 @@ public class GameLoop {
 
   private void reset(BoardState boardState) {
     boardState.resetBoard();
+    players = setPlayers(player1, player2);
+  }
+
+  private Player[] setPlayers(Player player1, Player player2) {
+    return new Player[]{player1, player2};
   }
 }
