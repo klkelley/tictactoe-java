@@ -1,5 +1,13 @@
 package me.karakelley.tictactoe;
 
+import me.karakelley.tictactoe.UI.UserInterface;
+import me.karakelley.tictactoe.game.BoardState;
+import me.karakelley.tictactoe.game.Game;
+import me.karakelley.tictactoe.game.GameLoop;
+import me.karakelley.tictactoe.players.ArtificialIntelligenceBehaviors.EasyBehavior;
+import me.karakelley.tictactoe.players.ArtificialIntelligenceBehaviors.ImpossibleBehavior;
+import me.karakelley.tictactoe.players.ComputerPlayer;
+import me.karakelley.tictactoe.players.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
