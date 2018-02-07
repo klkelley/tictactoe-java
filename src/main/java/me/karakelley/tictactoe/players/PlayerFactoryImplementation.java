@@ -2,6 +2,7 @@ package me.karakelley.tictactoe.players;
 
 
 import me.karakelley.tictactoe.game.Game;
+import me.karakelley.tictactoe.players.ArtificialIntelligenceBehaviors.HardBehavior;
 import me.karakelley.tictactoe.players.ArtificialIntelligenceBehaviors.ImpossibleBehavior;
 import me.karakelley.tictactoe.UI.UserInterface;
 
@@ -26,10 +27,14 @@ public class PlayerFactoryImplementation implements PlayerFactory {
 
     if (type.equals(HUMAN)) {
       newPlayer = new HumanPlayer(currentPlayerMarker, userInterface);
-    } else if (type.equals(EASY_COMPUTER) || type.equals(HARD_COMPUTER)) {
+    } else if (type.equals(EASY_COMPUTER)) {
       newPlayer = new ComputerPlayer(currentPlayerMarker, new EasyBehavior());
       userInterface.setWinMessage("You win!\n");
       userInterface.setLoseMessage("You lose!\n");
+    } else if (type.equals(HARD_COMPUTER)) {
+        newPlayer = new ComputerPlayer(currentPlayerMarker, new HardBehavior(opponentMarker));
+        userInterface.setWinMessage("You win!\n");
+        userInterface.setLoseMessage("You lose!\n");
     } else if (type.equals(IMPOSSIBLE_COMPUTER)) {
       newPlayer = new ComputerPlayer(currentPlayerMarker, new ImpossibleBehavior(currentPlayerMarker, opponentMarker, game));
       userInterface.setLoseMessage("You never had a chance!\n");
