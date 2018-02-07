@@ -6,13 +6,13 @@ import me.karakelley.tictactoe.game.BoardState;
 import me.karakelley.tictactoe.game.Game;
 import me.karakelley.tictactoe.game.GameLoop;
 
-public class Application {
+public class GameFacilitator {
 
   private Validator playAgainValidator;
   private UserInterface userInterface;
   private String PLAY_AGAIN = "Do you want to play again (Y / N)?\n";
 
-  public Application(UserInterface userInterface, Validator playAgainValidator) {
+  public GameFacilitator(UserInterface userInterface, Validator playAgainValidator) {
     this.userInterface = userInterface;
     this.playAgainValidator = playAgainValidator;
   }
