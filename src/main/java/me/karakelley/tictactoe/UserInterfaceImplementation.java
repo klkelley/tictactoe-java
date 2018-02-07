@@ -1,6 +1,6 @@
 package me.karakelley.tictactoe;
 
-public class GameInterfaceImplementation implements GameInterfaceFactory {
+public class UserInterfaceImplementation implements UserInterfaceFactory {
 
   private BoardPresenter boardPresenter;
   private IO io;
@@ -8,7 +8,7 @@ public class GameInterfaceImplementation implements GameInterfaceFactory {
   private final String EASY_COMPUTER = "2";
   private final String HARD_COMPUTER = "3";
 
-  public GameInterfaceImplementation(IO io, BoardPresenter boardPresenter) {
+  public UserInterfaceImplementation(IO io, BoardPresenter boardPresenter) {
     this.io = io;
     this.boardPresenter = boardPresenter;
   }

@@ -26,11 +26,11 @@ public class GameConfiguration {
     this.playerFactory = playerFactory;
   }
 
-  public void gameMenu(GameInterfaceFactory gameInterfaceFactory) {
+  public void gameMenu(UserInterfaceFactory userInterfaceFactory) {
     userInterface.greetUser();
 
     setUpPlayers();
-    setupInterface(gameInterfaceFactory);
+    setupInterface(userInterfaceFactory);
   }
 
   public Player getPlayer2() {
@@ -45,8 +45,8 @@ public class GameConfiguration {
     return gameInterface;
   }
 
-  private void setupInterface(GameInterfaceFactory gameInterfaceFactory) {
-    gameInterface = gameInterfaceFactory.makeGameInterface(gameType, userInterface);
+  private void setupInterface(UserInterfaceFactory userInterfaceFactory) {
+    gameInterface = userInterfaceFactory.makeGameInterface(gameType, userInterface);
   }
 
   private void chooseGameType() {

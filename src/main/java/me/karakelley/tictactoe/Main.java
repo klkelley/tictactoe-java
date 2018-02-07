@@ -11,7 +11,7 @@ public class Main {
     UserInterface humanUserInterface = new HumanUserInterface(io, boardPresenter, "Player one wins!\n", "Player two wins!\n");
     GameConfiguration gameConfiguration = new GameConfiguration(System.getProperty("configuration"), humanUserInterface, new PlayerFactoryImplementation(humanUserInterface, game));
 
-    gameConfiguration.gameMenu(new GameInterfaceImplementation(io, boardPresenter));
+    gameConfiguration.gameMenu(new UserInterfaceImplementation(io, boardPresenter));
     GameLoop gameLoop = new GameLoop(gameConfiguration.getGameInterface(), gameConfiguration.getPlayer1(), gameConfiguration.getPlayer2());
     gameLoop.start(boardState, game);
   }

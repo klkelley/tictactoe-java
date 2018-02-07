@@ -1,5 +1,5 @@
 package me.karakelley.tictactoe;
 
-public interface GameInterfaceFactory {
+public interface UserInterfaceFactory {
   public UserInterface makeGameInterface(String gameType, UserInterface userInterface);
 }

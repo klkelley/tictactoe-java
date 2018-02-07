@@ -12,7 +12,7 @@ class GameConfigurationTest {
   PlayerFactory playerFactory = mock(PlayerFactoryImplementation.class);
   HumanUserInterface userInterfaceMock = mock(HumanUserInterface.class, RETURNS_MOCKS);
   private GameConfiguration gameConfig;
-  private GameInterfaceFactory gameInterfaceFactory = mock(GameInterfaceImplementation.class, RETURNS_MOCKS);
+  private UserInterfaceFactory userInterfaceFactory = mock(UserInterfaceImplementation.class, RETURNS_MOCKS);
 
   @BeforeEach
   public void setUp() {
@@ -22,14 +22,14 @@ class GameConfigurationTest {
   @Test
 
   public void testGameMenu() {
-   gameConfig.gameMenu(gameInterfaceFactory);
+   gameConfig.gameMenu(userInterfaceFactory);
    verify(playerFactory, times(2)).makePlayer(anyString(), anyString(), anyString());
   }
 
   @Test
   public void testReturnsUserInterface() {
-    when(gameInterfaceFactory.makeGameInterface("1", userInterfaceMock)).thenCallRealMethod();
-    gameConfig.gameMenu(gameInterfaceFactory);
+    when(userInterfaceFactory.makeGameInterface("1", userInterfaceMock)).thenCallRealMethod();
+    gameConfig.gameMenu(userInterfaceFactory);
     assertTrue(gameConfig.getGameInterface() instanceof UserInterface);
   }
 }
