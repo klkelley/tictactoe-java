@@ -6,13 +6,15 @@ public class HumanUserInterface implements UserInterface {
   private BoardPresenter boardPresenter;
   private static final String TIE = "It's a tie!\n";
   private static final String WELCOME = "Welcome to Tic Tac Toe!\n";
-  private String playerOneWins = "Player one wins!\n";
-  private String playerTwoWins = "Player two wins!\n";
+  private String playerOneWins;
+  private String playerTwoWins;
 
 
-  public HumanUserInterface(IO io, BoardPresenter boardPresenter) {
+  public HumanUserInterface(IO io, BoardPresenter boardPresenter, String playerOneWins, String playerTwoWins) {
     this.io = io;
     this.boardPresenter = boardPresenter;
+    this.playerOneWins = playerOneWins;
+    this.playerTwoWins = playerTwoWins;
   }
 
   public String userPrompt(String message, Validator validator) {
@@ -24,14 +26,6 @@ public class HumanUserInterface implements UserInterface {
 
     } while(!validator.isValidInput(input));
       return input;
-  }
-
-  public void setWinMessage(String message) {
-    playerOneWins = message;
-  }
-
-  public void setLoseMessage(String message) {
-    playerTwoWins = message;
   }
 
   public void displayTie() {
@@ -59,7 +53,7 @@ public class HumanUserInterface implements UserInterface {
     io.display(message);
   }
 
-  private String winningStatement(boolean firstPlayerWins) {
+  public String winningStatement(boolean firstPlayerWins) {
     return firstPlayerWins ? playerOneWins : playerTwoWins;
   }
 }
