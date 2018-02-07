@@ -14,6 +14,7 @@ public class GameConfiguration {
   private String path;
   private Parser parser;
   private UserInterface userInterface;
+  private UserInterface gameInterface;
   private PlayerFactory playerFactory;
   private Player player1;
   private Player player2;
@@ -25,9 +26,11 @@ public class GameConfiguration {
     this.playerFactory = playerFactory;
   }
 
-  public void gameMenu() {
+  public void gameMenu(GameInterfaceFactory gameInterfaceFactory) {
     userInterface.greetUser();
+
     setUpPlayers();
+    setupInterface(gameInterfaceFactory);
   }
 
   public Player getPlayer2() {
@@ -36,6 +39,14 @@ public class GameConfiguration {
 
   public Player getPlayer1() {
     return player1;
+  }
+
+  public UserInterface getGameInterface() {
+    return gameInterface;
+  }
+
+  private void setupInterface(GameInterfaceFactory gameInterfaceFactory) {
+    gameInterface = gameInterfaceFactory.makeGameInterface(gameType, userInterface);
   }
 
   private void chooseGameType() {
@@ -84,5 +95,6 @@ public class GameConfiguration {
   private boolean validParser() {
     return parser != null;
   }
+
 }
 
