@@ -8,6 +8,7 @@ import me.karakelley.tictactoe.players.HumanPlayer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.*;
 
 class GameLoopTest {
@@ -33,6 +34,18 @@ class GameLoopTest {
     when(humanUserInterfaceMock.userPrompt("Do you want to play again (Y / N)?\n", playAgainMock)).thenReturn("n");
     gameLoop.start(gameMock, boardStateMock);
     verify(humanUserInterfaceMock, times(1)).displayBoard(boardStateMock);
+  }
+
+  @Test
+  public void repeatGame() {
+    gameLoop.repeatGame(boardStateMock, "y");
+
+    verify(boardStateMock, times(1)).resetBoard();
+  }
+
+  @Test
+  public void testGameIsNotRepeated() {
+    assertFalse(gameLoop.repeatGame(boardStateMock, "n"));
   }
 
 }
