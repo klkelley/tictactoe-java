@@ -1,10 +1,11 @@
 package me.karakelley.tictactoe.game;
 
+
 import me.karakelley.tictactoe.UI.Parser;
+import me.karakelley.tictactoe.UI.UserInterface;
+import me.karakelley.tictactoe.UI.validators.PlayerTypeValidator;
 import me.karakelley.tictactoe.players.Player;
 import me.karakelley.tictactoe.players.PlayerFactory;
-import me.karakelley.tictactoe.UI.validators.PlayerTypeValidator;
-import me.karakelley.tictactoe.UI.UserInterface;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.io.FileReader;

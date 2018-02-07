@@ -1,4 +1,4 @@
-package me.karakelley.tictactoe;
+package me.karakelley.tictactoe.players.ArtificialIntelligenceBehaviors;
 
 import me.karakelley.tictactoe.game.BoardState;
 import me.karakelley.tictactoe.players.ArtificialIntelligenceBehaviors.HardBehavior;
