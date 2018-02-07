@@ -45,7 +45,6 @@ class BoardStateTest {
 
   @Test
   public void testCellIsAvailable() {
-    System.out.println(boardState.getGrid()[0]);
     assertEquals(true, boardState.cellAvailable(0));
   }
 

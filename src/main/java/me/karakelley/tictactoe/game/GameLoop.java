@@ -72,4 +72,12 @@ public class GameLoop {
   public void reset(BoardState boardState) {
     boardState.resetBoard();
   }
+
+  public boolean repeatGame(BoardState boardState, String answer) {
+    if (answer.toLowerCase().equals("y")) {
+      reset(boardState);
+      return true;
+    }
+    return false;
+  }
 }

@@ -22,14 +22,14 @@ class ApplicationTest {
 
   @BeforeEach
   public void setUp() {
-    application = new Application(userInterface, gameLoop, playAgain);
+    application = new Application(userInterface, playAgain);
   }
 
   @Test
   public void testStart() {
     when(game.gameOver(boardState)).thenReturn(true);
     when(userInterface.userPrompt( "Do you want to play again (Y / N)?\n", playAgain)).thenReturn("n");
-    application.start(game, boardState);
+    application.start(game, boardState, gameLoop);
     verify(gameLoop, times(1)).start(game, boardState);
   }
 
@@ -37,7 +37,7 @@ class ApplicationTest {
   public void testAsksToPlayAgain() {
     when(game.gameOver(boardState)).thenReturn(true);
     when(userInterface.userPrompt( "Do you want to play again (Y / N)?\n", playAgain)).thenReturn("n");
-    application.start(game, boardState);
+    application.start(game, boardState, gameLoop);
     verify(userInterface, times(1)).userPrompt( "Do you want to play again (Y / N)?\n", playAgain);
   }
 
@@ -45,7 +45,7 @@ class ApplicationTest {
   public void testGameIsReset() {
     when(game.gameOver(boardState)).thenReturn(true);
     when(userInterface.userPrompt( "Do you want to play again (Y / N)?\n", playAgain)).thenReturn("y");
-    application.playAgain(boardState);
-    verify(gameLoop, times(1)).reset(boardState);
+    application.playAgain(boardState, gameLoop);
+    verify(gameLoop, times(1)).repeatGame(boardState, "y");
   }
 }

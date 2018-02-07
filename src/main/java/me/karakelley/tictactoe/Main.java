@@ -20,6 +20,6 @@ public class Main {
 
     gameConfiguration.gameMenu();
     GameLoop gameLoop = new GameLoop(humanUserInterface, gameConfiguration.getPlayer1(), gameConfiguration.getPlayer2());
-    new Application(humanUserInterface, gameLoop, new PlayAgainValidator()).start(new Game(), new BoardState());
+    new Application(humanUserInterface, new PlayAgainValidator()).start(new Game(), new BoardState(), gameLoop);
   }
 }
