@@ -9,8 +9,14 @@ import me.karakelley.tictactoe.players.ArtificialIntelligenceBehaviors.Impossibl
 import me.karakelley.tictactoe.players.ComputerPlayer;
 import me.karakelley.tictactoe.players.Player;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -19,8 +25,8 @@ class ImpossibleBehaviorTest {
 
   final static String COMPUTER_MARKER = "O";
   final static String OPPONENT_MARKER = "X";
-  BoardState boardState = new BoardState();
   Game game = new Game();
+  BoardState boardState = new BoardState();
   UserInterface userInterfaceMock = mock(UserInterface.class);
   GameLoop autoGame;
   GameLoop simulatedGame;
@@ -32,15 +38,34 @@ class ImpossibleBehaviorTest {
   public void setUp() {
     impossiblePlayer = new ComputerPlayer(COMPUTER_MARKER, new ImpossibleBehavior(COMPUTER_MARKER, OPPONENT_MARKER, game));
     opponent = new ComputerPlayer(OPPONENT_MARKER, new EasyBehavior());
-    autoGame = new GameLoop(userInterfaceMock, opponent, impossiblePlayer);
     simulatedGame = new GameLoop(userInterfaceMock, impossiblePlayer, opponent);
   }
 
-  @RepeatedTest(10)
-  public void test_impossible_computer_always_wins() {
-    autoGame.start(boardState, game);
+  @Test
+  public void test_impossible_computer_always_wins() throws ExecutionException, InterruptedException {
+    Integer count = 10;
+    Integer processors = Runtime.getRuntime().availableProcessors();
+    ExecutorService threadPool = Executors.newFixedThreadPool(processors);
+    List<Future<Boolean>> runningGames = new ArrayList<>();
 
-    assertTrue(game.tie(boardState) || game.winningPlayer().equals(COMPUTER_MARKER) );
+    for (int i = 0; i < count; i ++) {
+      Future<?> runningGame = threadPool.submit(() -> {
+        Game newGame = new Game();
+        BoardState newBoardState = new BoardState();
+        impossiblePlayer = new ComputerPlayer(COMPUTER_MARKER, new ImpossibleBehavior(COMPUTER_MARKER, OPPONENT_MARKER, newGame));
+        autoGame = new GameLoop(userInterfaceMock, opponent, impossiblePlayer);
+        autoGame.start(newBoardState, newGame);
+        return newGame.tie(newBoardState) || newGame.winningPlayer().equals(COMPUTER_MARKER);
+      });
+      runningGames.add((Future<Boolean>) runningGame);
+    }
+
+    for (int i = 0; i < runningGames.size(); i++) {
+      Future<Boolean> finishedGames = runningGames.get(i);
+      Boolean gameWonOrTied = finishedGames.get();
+      assertTrue(gameWonOrTied.equals(true));
+    }
+
   }
 
   @Test
