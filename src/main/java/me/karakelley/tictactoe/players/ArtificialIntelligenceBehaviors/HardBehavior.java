@@ -13,7 +13,7 @@ public class HardBehavior implements AIBehavior{
   }
 
   public String move(BoardState boardState) {
-    if (blockNeeded(boardState.winningCombinations())) {
+    if (blockNeeded(boardState.winningCombinations()) && searchForBlankCell(boardState.winningCombinations()) != null) {
       return searchForBlankCell(boardState.winningCombinations());
     } else {
       return availableCells(boardState).get(randomCell(boardState)).toString();
