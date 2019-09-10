@@ -45,7 +45,6 @@ class BoardStateTest {
 
   @Test
   public void testCellIsAvailable() {
-    System.out.println(boardState.getGrid()[0]);
     assertEquals(true, boardState.cellAvailable(0));
   }
 
@@ -83,5 +82,11 @@ class BoardStateTest {
     boardState.placeMove("3", "O");
     List<Integer> expectedOutput = new ArrayList<>(Arrays.asList(1, 2, 4, 5, 6, 7, 8));
     assertEquals(expectedOutput, boardState.availableCells());
+  }
+
+  @Test
+  public void testResetBoard() {
+    String[] expectedOutput = new String[] {"0","1", "2", "3", "4", "5", "6", "7", "8"};
+    assertArrayEquals(expectedOutput, boardState.resetBoard());
   }
 }

@@ -1,11 +1,9 @@
-package me.karakelley.tictactoe;
+package me.karakelley.tictactoe.players.ArtificialIntelligenceBehaviors;
 
 import me.karakelley.tictactoe.UI.UserInterface;
 import me.karakelley.tictactoe.game.BoardState;
 import me.karakelley.tictactoe.game.Game;
 import me.karakelley.tictactoe.game.GameLoop;
-import me.karakelley.tictactoe.players.ArtificialIntelligenceBehaviors.EasyBehavior;
-import me.karakelley.tictactoe.players.ArtificialIntelligenceBehaviors.ImpossibleBehavior;
 import me.karakelley.tictactoe.players.ComputerPlayer;
 import me.karakelley.tictactoe.players.Player;
 import org.junit.jupiter.api.BeforeEach;
@@ -54,7 +52,7 @@ class ImpossibleBehaviorTest {
         BoardState newBoardState = new BoardState();
         impossiblePlayer = new ComputerPlayer(COMPUTER_MARKER, new ImpossibleBehavior(COMPUTER_MARKER, OPPONENT_MARKER, newGame));
         autoGame = new GameLoop(userInterfaceMock, opponent, impossiblePlayer);
-        autoGame.start(newBoardState, newGame);
+        autoGame.start(newGame, newBoardState);
         return newGame.tie(newBoardState) || newGame.winningPlayer().equals(COMPUTER_MARKER);
       });
       runningGames.add((Future<Boolean>) runningGame);
@@ -65,7 +63,6 @@ class ImpossibleBehaviorTest {
       Boolean gameWonOrTied = finishedGames.get();
       assertTrue(gameWonOrTied.equals(true));
     }
-
   }
 
   @Test
@@ -74,7 +71,7 @@ class ImpossibleBehaviorTest {
     boardState.placeMove("0", OPPONENT_MARKER);
     boardState.placeMove("4", COMPUTER_MARKER);
     boardState.placeMove("2", OPPONENT_MARKER);
-    simulatedGame.start(boardState, game);
+    simulatedGame.start(game, boardState);
 
     assertTrue(game.tie(boardState) || game.winningPlayer().equals(COMPUTER_MARKER) );
   }
@@ -86,7 +83,7 @@ class ImpossibleBehaviorTest {
     boardState.placeMove("2", OPPONENT_MARKER);
     boardState.placeMove("1", COMPUTER_MARKER);
     boardState.placeMove("6", OPPONENT_MARKER);
-    simulatedGame.start(boardState, game);
+    simulatedGame.start(game, boardState);
 
     assertTrue(game.tie(boardState) || game.winningPlayer().equals(COMPUTER_MARKER)  );
   }
@@ -100,7 +97,7 @@ class ImpossibleBehaviorTest {
     boardState.placeMove("6", OPPONENT_MARKER);
     boardState.placeMove("3", COMPUTER_MARKER);
     boardState.placeMove("7", OPPONENT_MARKER);
-    simulatedGame.start(boardState, game);
+    simulatedGame.start(game, boardState);
 
     assertTrue(game.tie(boardState) || game.winningPlayer().equals(COMPUTER_MARKER));
   }
@@ -110,7 +107,7 @@ class ImpossibleBehaviorTest {
     boardState.placeMove("4", OPPONENT_MARKER);
     boardState.placeMove("0", COMPUTER_MARKER);
     boardState.placeMove("2", OPPONENT_MARKER);
-    simulatedGame.start(boardState, game);
+    simulatedGame.start(game, boardState);
 
     assertTrue(game.tie(boardState) || game.winningPlayer().equals(COMPUTER_MARKER));
   }
@@ -122,7 +119,7 @@ class ImpossibleBehaviorTest {
     boardState.placeMove("3", OPPONENT_MARKER);
     boardState.placeMove("5", COMPUTER_MARKER);
     boardState.placeMove("2", OPPONENT_MARKER);
-    simulatedGame.start(boardState, game);
+    simulatedGame.start(game, boardState);
 
     assertTrue(game.tie(boardState) || game.winningPlayer().equals(COMPUTER_MARKER));
   }

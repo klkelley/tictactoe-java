@@ -1,10 +1,11 @@
 package me.karakelley.tictactoe.game;
 
+
 import me.karakelley.tictactoe.UI.Parser;
+import me.karakelley.tictactoe.UI.UserInterface;
+import me.karakelley.tictactoe.UI.validators.PlayerTypeValidator;
 import me.karakelley.tictactoe.players.Player;
 import me.karakelley.tictactoe.players.PlayerFactory;
-import me.karakelley.tictactoe.UI.validators.PlayerTypeValidator;
-import me.karakelley.tictactoe.UI.UserInterface;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.io.FileReader;
@@ -13,6 +14,7 @@ import java.io.IOException;
 public class GameConfiguration {
   private String gameType;
   private final String HUMAN_PLAYER_SELECTION = "1";
+  private final String EASY_PLAYER_SELECTION = "2";
   private final String OPPONENT_TYPE = "\nChoose an opponent:\n(1) Human\n(2) Easy Computer Player\n(3) Hard Computer Player\n(4) Impossible Computer Player\n";
   private String player1marker = "X";
   private String player2marker = "O";
@@ -23,7 +25,7 @@ public class GameConfiguration {
   private Player player1;
   private Player player2;
 
-  public GameConfiguration(String path, UserInterface userInterface, PlayerFactory playerFactory) {
+  public GameConfiguration(String path, UserInterface userInterface, PlayerFactory playerFactory){
     this.path = path;
     this.userInterface = userInterface;
     this.parser = setupParser();
@@ -33,6 +35,7 @@ public class GameConfiguration {
   public void gameMenu() {
     userInterface.greetUser();
     setUpPlayers();
+    configureUIMessages();
   }
 
   public Player getPlayer2() {
@@ -41,6 +44,13 @@ public class GameConfiguration {
 
   public Player getPlayer1() {
     return player1;
+  }
+
+  public void configureUIMessages() {
+    if (gameType.equals(EASY_PLAYER_SELECTION)) {
+      userInterface.setWinMessage("You win!\n");
+      userInterface.setLoseMessage("You lose!\n");
+    }
   }
 
   private void chooseGameType() {

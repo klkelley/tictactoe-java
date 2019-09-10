@@ -17,16 +17,23 @@ public class GameLoop {
     this.userInterface = userInterface;
     this.player1 = player1;
     this.player2 = player2;
-    this.players = new Player[]{player1, player2};
+    this.players = setPlayers(player1, player2);
   }
 
-  public void start(BoardState boardState, Game game) {
+  public void start(Game game, BoardState boardState) {
     showBoard(boardState);
-
-    play(boardState, game);
+    play(game, boardState);
   }
 
-  private void play(BoardState boardState, Game game) {
+  public boolean repeatGame(BoardState boardState, String answer) {
+    if (answer.toLowerCase().equals("y")) {
+      reset(boardState);
+      return true;
+    }
+    return false;
+  }
+
+  private void play(Game game, BoardState boardState) {
     while (!game.gameOver(boardState)) {
       nextPlayersTurn(boardState);
     }
@@ -68,5 +75,14 @@ public class GameLoop {
 
   private boolean findWinner() {
     return lastPlayer() == player1;
+  }
+
+  private void reset(BoardState boardState) {
+    boardState.resetBoard();
+    players = setPlayers(player1, player2);
+  }
+
+  private Player[] setPlayers(Player player1, Player player2) {
+    return new Player[]{player1, player2};
   }
 }
